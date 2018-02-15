@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE web-app
+    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.2//EN"
+    "http://java.sun.com/j2ee/dtds/web-app_2_2.dtd">
+
+<web-app>
+
+   <filter>
+      <filter-name>EncodingFilter</filter-name>
+      <filter-class>de.hlu.ust.EncodingFilter</filter-class>
+   </filter>
+   <filter-mapping>
+      <filter-name>EncodingFilter</filter-name>
+      <url-pattern>/*</url-pattern>
+   </filter-mapping>  
+   
+    <display-name>E/Ü+USt</display-name>
+    <description>Das ist die Einnahme-Überschuss- und USt-Berechnung von Heiko Lübbe.</description>
+    <!-- Die folgenden 5 Kontextparameter anpassen oder gegebenenfalls auskommentieren. -->
+    <context-param>
+    	<param-name>user.name</param-name>
+		<param-value>James Brown</param-value>
+		<description>Benutzername für alle neu angelegten Einträge.
+			 Wird in folgender Reihenfolge überschrieben: 1. James Brown, 2. OS, 3. java property und 4. diesen Kontextparameter.
+			 Kann für eine session über den Punkt Konfiguration überschrieben werden.
+		</description>
+    </context-param>
+    <context-param>
+    	<param-name>UST_DATA</param-name>
+		<param-value>/tmp/test</param-value>
+		<description>Verzeichnis-Pfad zu den Dateien mit den Daten.
+			 Wird in folgender Reihenfolge überschrieben: 1. /tmp, 2. java property und 3. diesen Kontextparameter.
+		</description>
+    </context-param>
+     <context-param>
+    	<param-name>UST_CURRENCY</param-name>
+		<param-value>&amp;euro;</param-value>
+		<description>Währungskennzeichen.
+			 Wird in folgender Reihenfolge überschrieben: 1. EUR, 2. java property und 3. diesen Kontextparameter.
+		</description>
+    </context-param>
+     <context-param>  
+    	<param-name>UST_TAX_NUMBER</param-name>
+		<param-value>42</param-value>
+		<description>Die Steuernummer.
+			 Wird in folgender Reihenfolge überschrieben: 1. 123/45678, 2. java property und 3. diesen Kontextparameter.
+		</description>
+    </context-param>
+     <context-param>  
+    	<param-name>UST_TAG</param-name>
+		<param-value>&lt;img src="PapierkorbDesign16.png" heigth=16 width=16&gt;</param-value>
+		<description>Die Bezeichnung dieser Instanz.
+			 Wird in folgender Reihenfolge überschrieben: 1. ust, 2. java property und 3. diesen Kontextparameter.
+			 Beispiele:
+			 &lt;img src="PapierkorbDesign16.png" heigth=16 width=16&gt;
+			 &lt;b&gt;&lt;font color=darkgreen&gt;hlu&lt;/font&gt;&lt;/b&gt;
+		</description>
+    </context-param>
+    
+    <!--
+	    account maintenance servlet
+    -->
+    <servlet>
+        <servlet-name>AccountMaintenanceS</servlet-name>
+        <servlet-class>de.hlu.ust.AccountMaintenanceS</servlet-class>
+    </servlet>
+
+    <!--
+	    booking maintenance servlet
+    -->
+    <servlet>
+        <servlet-name>BookingMaintenanceS</servlet-name>
+        <servlet-class>de.hlu.ust.BookingMaintenanceS</servlet-class>
+    </servlet>
+
+    <!--
+	    bank account maintenance servlet
+    -->
+    <servlet>
+        <servlet-name>BankAccountMaintenanceS</servlet-name>
+        <servlet-class>de.hlu.ust.BankAccountMaintenanceS</servlet-class>
+    </servlet>
+
+    <!--
+	    show all set parameters servlet
+    -->
+    <servlet>
+        <servlet-name>ListParametersS</servlet-name>
+        <servlet-class>de.hlu.ust.ListParametersS</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>AccountMaintenanceS</servlet-name>
+        <url-pattern>/AccountMaintenanceS</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>BookingMaintenanceS</servlet-name>
+        <url-pattern>/BookingMaintenanceS</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>BankAccountMaintenanceS</servlet-name>
+        <url-pattern>/BankAccountMaintenanceS</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet-mapping>
+        <servlet-name>ListParametersS</servlet-name>
+        <url-pattern>/list</url-pattern>
+    </servlet-mapping>
+
+</web-app>
+

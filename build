@@ -1,0 +1,38 @@
+# ust - my VAT calculating project
+# hlu, 2003 - $Date: 2008-03-09 15:04:49 +0100 (Sun, 09 Mar 2008) $
+
+TOMCAT_HOME=/opt/jakarta/tomcat ; export TOMCAT_HOME
+# adopting for Maverick and MacPorts
+# SERVLET=/usr/share/java/servlet.jar
+SERVLET=/opt/local/share/java/tomcat6/lib/servlet-api.jar 
+
+BASE=/Users/hlu/workspace/ust
+
+# create javadoc
+doc()
+{
+    rm -rf $BASE/doc
+    mkdir $BASE/doc
+    cd $BASE/doc
+    javadoc $BASE/WEB-INF/src/de/hlu/ust/*.java
+}
+
+build()
+{
+rm -rf /tmp/ust /tmp/ust.war
+mkdir -p /tmp/ust/WEB-INF/classes
+cd /tmp/ust
+cp $BASE/WEB-INF/web.xml WEB-INF
+cp $BASE/*.jsp .
+cp $BASE/*.css .
+cp $BASE/*.gif .
+cp $BASE/*.png .
+cp $BASE/*.jpg .
+# (cd $BASE/WEB-INF/src ; javac -Xlint:unchecked -d /tmp/ust/WEB-INF/classes -cp $SERVLET de/hlu/ust/*.java)
+(cd $BASE/WEB-INF/src ; javac -d /tmp/ust/WEB-INF/classes -cp $SERVLET de/hlu/ust/*.java)
+mkdir /tmp/ust/WEB-INF/src
+(cd $BASE/WEB-INF/src ; find . -name \*.java | cpio -pdmu /tmp/ust/WEB-INF/src)
+mkdir /tmp/ust/WEB-INF/doc
+(cd $BASE/doc ; find . | cpio -pdmu /tmp/ust/WEB-INF/doc)
+jar cf /tmp/ust.war *.jsp *.css *.gif *.png *.jpg WEB-INF
+}
