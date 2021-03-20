@@ -1,7 +1,8 @@
 /*
  * ust - my VAT calculating project
  * AccountMaintenance.java - servlet to create, update or remove an account entry
- * hlu, Jan 30 2000 - $Date: 2008-03-09 15:04:49 +0100 (Sun, 09 Mar 2008) $
+ * hlu, Jan 30 2000 - Mar 20 2021
+ * Tomcat 10
  */
 
 package de.hlu.ust;
@@ -11,10 +12,10 @@ import java.io.PrintWriter;
 import java.util.Enumeration;
 import java.util.GregorianCalendar;
 
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  * This class is a servlet that maintains information about accounts.

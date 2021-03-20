@@ -1,12 +1,12 @@
 /*
  * ust - my VAT calculating project
  * BookingMaintenanceS.java - servlet to create, update or remove a booking
- * hlu, May 15 2001 - $Date: 2008-03-09 15:04:49 +0100 (Sun, 09 Mar 2008) $
+ * hlu, May 15 2001 - Mar 20 2021
  */
 
 package de.hlu.ust;
 
-import javax.servlet.http.*;
+import jakarta.servlet.http.*;
 import java.io.*;
 import java.util.*;
 

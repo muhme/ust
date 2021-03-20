@@ -1,15 +1,15 @@
 /*
  * ust - my VAT calculating project
  * ListParametersS.java - servlet to change some configuration values
- * hlu, Jan 30 2000 - $Date: 2008-03-09 15:04:49 +0100 (Sun, 09 Mar 2008) $
+ * hlu, Jan 30 2000 - Mar 20 2021
  */
 
 package de.hlu.ust;
 
-import javax.servlet.http.*;
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
+import jakarta.servlet.http.*;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.ServletException;
 
 import java.io.*;
 import java.util.*;

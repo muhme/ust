@@ -1,13 +1,14 @@
 /*
  * ust - my VAT calculating project
  * EncodingFilter.java - set char set UTF-8
- * hlu, Mar 6 2008 - $Date: 2008-03-09 15:04:49 +0100 (Sun, 09 Mar 2008) $ 
+ * hlu, Mar 6 2008 - Mar 20 2021
+ * Tomcat 10
  */
 
 package de.hlu.ust;
 
 import java.io.IOException;
-import javax.servlet.*;
+import jakarta.servlet.*;
 
 /**
  * Encoding-Filter to set request character encoding to UTF-8.
