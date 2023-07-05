@@ -27,7 +27,7 @@
 
 <p>
 die Anwendung ust, in der Version <%= Finance.VERSION %>, vom <%= Finance.DATE %><br>
-<a href="https://www.consulting.heikol.de/ust.html">http://www.consulting.heikol.de/ust.html</a>
+<a href="https://github.com/muhme/ust">https://github.com/muhme/ust</a>
 </p>
 <table>
     <tr><th>Eigenschaft</th><th>Wert</th></tr>
