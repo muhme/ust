@@ -1,7 +1,7 @@
 /*
  * ust - my VAT calculating project
  * Finance.java - an parent object for the Account, Booking and BankAccount objects
- * hlu, Jan 30 2000 - $Date: 2008-03-09 15:04:49 +0100 (Sun, 09 Mar 2008) $
+ * hlu, Jan 30 2000 - Jul 5 2023
  */
 
 package de.hlu.ust;
@@ -44,10 +44,10 @@ import java.io.OutputStreamWriter;
 public abstract class Finance implements Serializable {
 
     /** Program version. */
-    public static final String VERSION = "0.2.6";
+    public static final String VERSION = "0.2.7";
 
     /** Program date. */
-    public static final String DATE = "6. März 2008";
+    public static final String DATE = "5. Juli 2023";
 
     /** The incomming account type. */
     public static final int IN = 0;
