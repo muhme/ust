@@ -1,0 +1,13 @@
+version: '3.7'
+
+services:
+  ust:
+    container_name: ust
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./data:/usr/local/tomcat/webapps/ust/data/
+    ports:
+      - "8080:8080"
+    restart: unless-stopped

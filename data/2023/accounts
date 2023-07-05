@@ -1,0 +1,20 @@
+11|Einnahmen|Zeile 11 Ust-pflichtige Betriebseinnahmen|0|true|1|01.01.2012 10:00|ust Template|19.0
+17|Privatentnahme Kfz|Zeile 17 private Kfz-Nutzung|0|false|2|01.01.2012 10:00|ust Template|0.0
+18|Entnahmen|Zeile 18 sonstige Sach-, Nutzungs- und Leistungsentnahmen|0|false|3|01.01.2012 10:00|ust Template|0.0
+28|Abschreibungen|Zeile 28 AfA|1|false|4|01.01.2012 10:00|ust Template|0.0
+33|GWG|Zeile 33 Geringwertige Wirtschaftsgüter|1|false|5|01.01.2012 10:00|ust Template|0.0
+54|Fahrtkosten|Zeile 54 tatsächliche Kfz- und anderer Fahrtkosten|1|true|6|01.01.2012 10:00|ust Template|19.0
+51|Arbeitszimmer|Zeile 51 Aufwendungen für ein häusl. Arbeitszimmer|1|true|7|01.01.2012 10:00|ust Template|19.0
+48|Geschenke|Zeile 48 Geschenke|1|true|8|01.01.2012 10:00|ust Template|19.0
+49|Privatentnahme Bewirtung|Zeile 49 Bewirtungsaufwendungen, nicht abziehbar|0|false|9|04.02.2012 17:23|ust Template|0.0
+1|Bewirtungen|Bewirtungsaufwendungen gesamt|1|false|10|01.01.2012 10:00|ust Template|19.0
+47|Übrige Betriebsausgaben|Zeile 47 übrige unbeschränkt abziehbare Betriebsausgaben|1|true|11|01.01.2012 10:00|ust Template|19.0
+39|Telekommunikation|Zeile 39 Aufwendungen für Telekommunikation|1|true|12|01.01.2012 10:00|ust Template|19.0
+40|Fortbildungskosten|Zeile 40 Fortbildungskosten|1|true|13|01.01.2012 10:00|ust Template|19.0
+41|Recht+Steuer|Zeile 41 Rechts- und Steuerberatung, Buchführung|1|true|14|01.01.2012 10:00|ust Template|19.0
+45|USt-Vorauszahlungen|Zeile 45 gezahlte/verrechnete USt|3|true|15|01.01.2012 10:00|ust Template|100.0
+99|Ausstehende USt|Einrechnung der ausstehenden USt|2|false|16|16.05.2016 18:02|ust Template|16.0
+55|Kfz-Steuer, Versicherung und Maut|Kfz Steuern, Versicherungen und Maut|1|true|17|29.05.2017 16:45|ust Template|19.0
+56|Verpflegungsmehraufwendungen|24 € oder 12 € / Tag|1|false|18|29.05.2017 16:46|ust Template|0.0
+57|Übernachtung|Übernachtungs- und Reisenebenkosten bei Geschäftsreisen|1|false|19|29.05.2017 16:47|ust Template|19.0
+58|Beiträge,Gebühren,Abgaben,Versicherungen|55 Beiträge, Gebühren, Abgaben und Versicherungen (ohne Gebäude und Kfz)|1|true|20|28.06.2022 18:01|ust Template|19.0

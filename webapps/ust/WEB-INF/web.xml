@@ -20,7 +20,7 @@
     <!-- Die folgenden 5 Kontextparameter anpassen oder gegebenenfalls auskommentieren. -->
     <context-param>
     	<param-name>user.name</param-name>
-		<param-value>James Brown</param-value>
+		<param-value>Dagobert Duck</param-value>
 		<description>Benutzername für alle neu angelegten Einträge.
 			 Wird in folgender Reihenfolge überschrieben: 1. James Brown, 2. OS, 3. java property und 4. diesen Kontextparameter.
 			 Kann für eine session über den Punkt Konfiguration überschrieben werden.
@@ -28,7 +28,7 @@
     </context-param>
     <context-param>
     	<param-name>UST_DATA</param-name>
-		<param-value>/tmp/test</param-value>
+		<param-value>/usr/local/tomcat/webapps/ust/data/2023</param-value>
 		<description>Verzeichnis-Pfad zu den Dateien mit den Daten.
 			 Wird in folgender Reihenfolge überschrieben: 1. /tmp, 2. java property und 3. diesen Kontextparameter.
 		</description>
@@ -49,7 +49,7 @@
     </context-param>
      <context-param>  
     	<param-name>UST_TAG</param-name>
-		<param-value>&lt;img src="PapierkorbDesign16.png" heigth=16 width=16&gt;</param-value>
+		<param-value>&lt;img src="data/2023/logo.png" heigth=16 width=16&gt;</param-value>
 		<description>Die Bezeichnung dieser Instanz.
 			 Wird in folgender Reihenfolge überschrieben: 1. ust, 2. java property und 3. diesen Kontextparameter.
 			 Beispiele:
@@ -57,7 +57,7 @@
 			 &lt;b&gt;&lt;font color=darkgreen&gt;hlu&lt;/font&gt;&lt;/b&gt;
 		</description>
     </context-param>
-    
+
     <!--
 	    account maintenance servlet
     -->
