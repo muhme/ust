@@ -1,7 +1,7 @@
 <!--
   ust - my VAT calculating project
   ListBookings.jsp - show all bookings
-  hlu, May 12 2001 - $Date: 2008-03-09 15:04:49 +0100 (Sun, 09 Mar 2008) $
+  hlu, May 12 2001 - Jul 5 2023
 -->
 
 <%@ page import="de.hlu.ust.*" %>
@@ -272,10 +272,12 @@ if (!print) {
 %>
 Von: 
 <!-- dynamic include -->
-<jsp:include page="<%= "MonthChoosen.jsp?startJanuary=true&selectName=from&selectValue=" + from %>" flush="true"></jsp:include>
+<% String pageUrlFrom = "MonthChoosen.jsp?startJanuary=true&selectName=from&selectValue=" + from; %>
+<jsp:include page="<%= pageUrlFrom %>" flush="true"></jsp:include>
 Bis: 
 <!-- dynamic include -->
-<jsp:include page="<%= "MonthChoosen.jsp?startJanuary=true&selectName=to&selectValue=" + to %>" flush="true"></jsp:include>
+<% String pageUrlTo = "MonthChoosen.jsp?startJanuary=true&selectName=to&selectValue=" + to; %>
+<jsp:include page="<%= pageUrlTo %>" flush="true"></jsp:include>
 <%
 
     Account[] accounts = Account.getAllAccounts();

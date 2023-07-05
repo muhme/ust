@@ -1,7 +1,7 @@
 <!--
   ust - my VAT calculating project
   Configuration.jsp - show and set the configuration
-  hlu, Sep 21 2003 - $Date: 2008-03-09 15:04:49 +0100 (Sun, 09 Mar 2008) $
+  hlu, Sep 21 2003 - Jul 5 2023
 -->
 
 <%@ page import="de.hlu.ust.*" %>
@@ -85,7 +85,8 @@ try {
 %>
 <tr><td>Monat</td><td> 
 <!-- dynamic include -->
-<jsp:include page="<%= "MonthChoosen.jsp?selectValue=" + month %>" flush="true"></jsp:include>
+<% String pageUrl = "MonthChoosen.jsp?selectValue=" + month; %>
+<jsp:include page="<%= pageUrl %>" flush="true"></jsp:include>
 </td></tr>
 <%
     
