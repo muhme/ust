@@ -8,9 +8,9 @@ Zum Hintergrund siehe https://www.consulting.heikol.de/ust.html
 ## Docker Container
 There is a Docker environment prepared with minimalistic test data. You can create your own instance with the following commands:
 ```
-$ git clone https://github.com/muhme/ust
-$ cd ust
-$ docker compose up -d
+git clone https://github.com/muhme/ust
+cd ust
+docker compose up -d
 ```
 Then you have a test instance running on http://localhost:8080/ust.
 Container directory /usr/local/tomcat/webapps/ust/data is mapped to host directory data.
