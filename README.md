@@ -21,6 +21,12 @@ You can build an .war archive with you adoption of shell script build.
 ## Documentation
 See JavaDoc in folder doc.
 
+## Clean-Up
+To stop and remove Docker containers and networks:
+```bash
+docker compose down
+```
+
 ## License
 This project is licensed under the MIT License.
 
