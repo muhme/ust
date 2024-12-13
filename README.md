@@ -27,6 +27,14 @@ To stop and remove Docker containers and networks:
 docker compose down
 ```
 
+## Trouble-Shouting
+* **Duplicate Bookings in the List:**
+  Bookings with unique IDs were displayed multiple times in the booking list.
+  * 👉 Stop Tomcat, delete the `cache/work` folder, and restart Tomcat.
+* **Exception:** `de.hlu.ust.AppException: Kann keine Buchung mit der bankStatementId 4711 finden!`
+  * 👉 Stop tomcat, delete the line with the specified ID (e.g. `4711`) in  the `bankStatements` file and restart Tomcat.
+
+
 ## License
 This project is licensed under the MIT License.
 
