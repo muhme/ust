@@ -27,31 +27,34 @@ Container directory `/usr/local/tomcat/webapps/ust/data` is mapped to host direc
   ```
 
 <details>
-  <summary>There are also development hints.</summary>
+  <summary>👉 There are also development hints.</summary>
 
 ---
 
-## Developer Java Documentation
+## Developer Hints
+
+### Java Documentation
+
 See JavaDoc in folder doc.
 
-# Code Checker
+### Code Checker
 
 You can use the following script to check code style:
 ```bash
 scripts/lint.sh
 ```
 
-## Tests
+### Tests
 Lightweight regression tests can be compiled and run without JUnit inside Docker container:
   ```bash
   export TZ=Europe/Berlin
   scripts/test-in-docker.sh
   ```
 
-## Legacy Build
+### Legacy Build
 The [build](build) file is only for legacy build command.
 
-## Clean-Up
+### Clean-Up
 To stop and remove Docker container and network:
 ```bash
 scripts/clean.sh
