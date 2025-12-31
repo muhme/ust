@@ -3,7 +3,7 @@
 # ust web application, Copyright (c) 2023 Heiko Lübbe, MIT License, https://github.com/muhme/ust
 
 # Use the official Tomcat image as a base
-FROM tomcat:10.1.10-jdk21-openjdk-slim
+FROM tomcat:11.0-jdk21-openjdk-slim
 
 # some comfort
 # Install tools and timezone database (noninteractive to avoid tzdata prompt)

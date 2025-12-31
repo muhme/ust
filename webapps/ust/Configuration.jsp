@@ -77,9 +77,24 @@ try {
     }
     bookingYear = "" + Config.getBookingYear();
 
-    out.println ("<tr><td>UST_DATA</td><td>" + Config.getFileName("") + "</td></tr>");
+    out.println ("<tr><td>UST_DATA (Container)</td><td>" + Config.getFileName("") + "</td></tr>");
+
+    // Show host data directory path if available
+    String ustDataHost = System.getenv("UST_DATA_HOST");
+    if (ustDataHost != null && ustDataHost.trim().length() > 0) {
+        out.println ("<tr><td>UST_DATA_HOST</td><td>" + ustDataHost + "/" + Config.getBookingYear() + "/</td></tr>");
+    }
+
     out.println ("<tr><td>UST_CURRENCY</td><td>" + Config.getCurrency() + "</td></tr>");
     out.println ("<tr><td>UST_TAX_NUMBER</td><td>" + Config.getTaxNumber() + "</td></tr>");
+
+    // Show JDK and Tomcat version
+    String javaVersion = System.getProperty("java.version");
+    String javaVendor = System.getProperty("java.vendor");
+    out.println ("<tr><td>Java Version</td><td>" + javaVersion + " (" + javaVendor + ")</td></tr>");
+
+    String tomcatVersion = application.getServerInfo();
+    out.println ("<tr><td>Tomcat Version</td><td>" + tomcatVersion + "</td></tr>");
 
     // Show timezone configuration
     String ustTimezone = System.getProperty("UST_TIMEZONE");

@@ -1,7 +1,7 @@
 /*
  * Finance.java - an parent object for the Account, Booking and BankAccount objects
  *
- * ust web application, Copyright (c) 2000 Heiko Lübbe, MIT License, https://github.com/muhme/ust
+ * ust web application, Copyright (c) 2000-2025 Heiko Lübbe, MIT License, https://github.com/muhme/ust
  */
 
 package de.hlu.ust;
@@ -44,10 +44,10 @@ import java.io.OutputStreamWriter;
 public abstract class Finance implements Serializable {
 
     /** Program version. */
-    public static final String VERSION = "0.2.8";
+    public static final String VERSION = "0.2.9";
 
     /** Program date. */
-    public static final String DATE = "30. Dezember 2025";
+    public static final String DATE = "31. Dezember 2025";
 
     /** The incomming account type. */
     public static final int IN = 0;
