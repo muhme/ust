@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE module PUBLIC
+    "-//Puppy Crawl//DTD Check Configuration 1.3//EN"
+    "https://www.puppycrawl.com/dtds/configuration_1_3.dtd">
+
+<!--
+  checkstyle.xml - Checkstyle configuration for ust web application
+  
+  Lenient configuration focused on real issues for legacy code.
+  ust web application, Copyright (c) 2025 Heiko Lübbe, MIT License, https://github.com/muhme/ust
+-->
+
+<module name="Checker">
+    <property name="charset" value="UTF-8"/>
+    <property name="fileExtensions" value="java"/>
+    <property name="severity" value="warning"/>
+
+    <!-- Only report errors on important checks -->
+    <module name="LineLength">
+        <property name="max" value="120"/>
+    </module>
+
+    <module name="TreeWalker">
+        <!-- Essential checks -->
+        <module name="MethodName"/>
+        <module name="PackageName"/>
+        <module name="TypeName"/>
+        <module name="UnusedImports"/>
+        <module name="EqualsHashCode"/>
+        <module name="FallThrough"/>
+        
+        <!-- Class design -->
+        <module name="InterfaceIsType"/>
+        
+        <!-- Whitespace - not critical -->
+        <module name="GenericWhitespace"/>
+        <module name="ModifierOrder"/>
+    </module>
+</module>

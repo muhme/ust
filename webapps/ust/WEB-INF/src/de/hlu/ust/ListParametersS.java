@@ -25,7 +25,7 @@ public class ListParametersS extends HttpServlet {
     /**
      * This method examines an HTTP request, prints out the request parameters
      * and session attributes.
-     * 
+     *
      * @param req
      *            The HTTP Servlet request.
      * @param res
@@ -47,7 +47,7 @@ public class ListParametersS extends HttpServlet {
         // print all request parameters
         out.println("request parameters:<BR>");
         String param;
-        for (Enumeration e = req.getParameterNames(); e.hasMoreElements();) {
+        for (Enumeration<String> e = req.getParameterNames(); e.hasMoreElements();) {
             param = e.nextElement().toString();
             out.println(param + "=" + req.getParameter(param) + "<BR>");
         }
@@ -55,7 +55,7 @@ public class ListParametersS extends HttpServlet {
         // show all session attribute
         out.println("session attributes:<BR>");
         String attr;
-        for (Enumeration e = session.getAttributeNames(); e.hasMoreElements();) {
+        for (Enumeration<String> e = session.getAttributeNames(); e.hasMoreElements();) {
             attr = e.nextElement().toString();
             out.println(attr + "=" + session.getAttribute(attr) + "<BR>");
         }
@@ -74,7 +74,7 @@ public class ListParametersS extends HttpServlet {
 
     /**
      * Init servelt method.
-     * 
+     *
      * @see javax.servlet.GenericServlet#init(javax.servlet.ServletConfig)
      */
     public void init(ServletConfig poConfig) throws ServletException {
@@ -83,7 +83,7 @@ public class ListParametersS extends HttpServlet {
         // -- init base class
         super.init(poConfig);
 
-        for (Enumeration e = poConfig.getInitParameterNames(); e
+        for (Enumeration<String> e = poConfig.getInitParameterNames(); e
                 .hasMoreElements();) {
             param = e.nextElement().toString();
             initParameters = param + "=" + poConfig.getInitParameter(param)
@@ -92,7 +92,7 @@ public class ListParametersS extends HttpServlet {
 
         ServletContext context = poConfig.getServletContext();
 
-        for (Enumeration e = context.getAttributeNames(); e.hasMoreElements();) {
+        for (Enumeration<String> e = context.getAttributeNames(); e.hasMoreElements();) {
             param = e.nextElement().toString();
             configParameters = param + "=" + context.getAttribute(param)
                     + "<br>";

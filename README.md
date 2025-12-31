@@ -1,4 +1,5 @@
 # ust
+
 ust - J2EE-Studie E/Ü- und USt-Berechnung
 
 Zum Hintergrund siehe https://www.consulting.heikol.de/ust.html
@@ -6,6 +7,7 @@ Zum Hintergrund siehe https://www.consulting.heikol.de/ust.html
 ![screenshot.png](screenshot.png)
 
 ## Docker Container
+
 There is a Docker environment prepared with minimalistic test data. You can create your own instance with the following commands:
 ```
 git clone https://github.com/muhme/ust
@@ -16,6 +18,7 @@ Then you have a test instance running on http://localhost:8080/ust.
 Container directory `/usr/local/tomcat/webapps/ust/data` is mapped to host directory `data`.
 
 ### Timezone Configuration
+
 - The container honors the `TZ` environment variable and sets the JVM timezone via `JAVA_OPTS=-Duser.timezone=...`.
 - Recommended: export your timezone and let compose pass it through.
   ```bash
@@ -23,11 +26,20 @@ Container directory `/usr/local/tomcat/webapps/ust/data` is mapped to host direc
   scripts/build.sh
   ```
 
-## Legacy Build
-The [build](build) file is only for legacy build command.
+<details>
+  <summary>There are also development hints.</summary>
+
+---
 
 ## Developer Java Documentation
 See JavaDoc in folder doc.
+
+# Code Checker
+
+You can use the following script to check code style:
+```bash
+scripts/lint.sh
+```
 
 ## Tests
 Lightweight regression tests can be compiled and run without JUnit inside Docker container:
@@ -36,11 +48,18 @@ Lightweight regression tests can be compiled and run without JUnit inside Docker
   scripts/test-in-docker.sh
   ```
 
+## Legacy Build
+The [build](build) file is only for legacy build command.
+
 ## Clean-Up
 To stop and remove Docker container and network:
 ```bash
 scripts/clean.sh
 ```
+
+---
+
+</details>
 
 ## Trouble-Shouting
 * **Duplicate Bookings in the List:**

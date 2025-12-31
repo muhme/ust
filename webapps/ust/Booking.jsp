@@ -39,7 +39,7 @@ try {
     int id = 0;         // default: new booking entry
     int month = 0;      // default: month and year are choosable for new booking entries
                                 // default: this year (only used is month used)
-    int year = (new GregorianCalendar()).get (Calendar.YEAR);   
+    int year = (new GregorianCalendar()).get (Calendar.YEAR);
 
     try {
         Integer i = new Integer ((String)session.getAttribute ("month"));

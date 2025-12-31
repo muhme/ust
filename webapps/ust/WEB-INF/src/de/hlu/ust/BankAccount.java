@@ -19,16 +19,16 @@ import java.io.InputStreamReader;
 /**
  * The <code>BankAccount</code> object stores all information about a bank
  * from this programs view.
- * 
+ *
  * @author Heiko Lübbe
  */
-public class BankAccount extends Finance implements Comparable {
+public class BankAccount extends Finance implements Comparable<BankAccount> {
 
     /**
      * Getter for the banking account number.
-     * 
+     *
      * @return A copy of the banking account number.
-     * 
+     *
      * @see #setAccountNumber(String)
      */
     public String getAccountNumber() {
@@ -37,9 +37,9 @@ public class BankAccount extends Finance implements Comparable {
 
     /**
      * Getter for the long (e.g. instituts) name of the bank.
-     * 
+     *
      * @return A copy of the long name of the bank, e.g. "Dresdner Bank".
-     * 
+     *
      * @see #setBankName(String)
      * @see #getNickname()
      */
@@ -49,9 +49,9 @@ public class BankAccount extends Finance implements Comparable {
 
     /**
      * Getter for the short name of the bank.
-     * 
+     *
      * @return A copy of the short name of the bank, e.g. "DreBa".
-     * 
+     *
      * @see #setNickname(String)
      * @see #getBankName()
      */
@@ -61,9 +61,9 @@ public class BankAccount extends Finance implements Comparable {
 
     /**
      * Getter for this bank entry description.
-     * 
+     *
      * @return A copy of the description.
-     * 
+     *
      * @see #setDescription(String)
      */
     public String getDescription() {
@@ -72,9 +72,9 @@ public class BankAccount extends Finance implements Comparable {
 
     /**
      * Getter for the bank code (German BLZ).
-     * 
+     *
      * @return A copy of the bank code.
-     * 
+     *
      * @see #setBankCode(String)
      */
     public String getBankCode() {
@@ -83,9 +83,9 @@ public class BankAccount extends Finance implements Comparable {
 
     /**
      * Getter for the International Bank Account Number.
-     * 
+     *
      * @return A copy of the IBAN.
-     * 
+     *
      * @see #setIBAN(String)
      */
     public String getIBAN() {
@@ -94,10 +94,10 @@ public class BankAccount extends Finance implements Comparable {
 
     /**
      * Setter for the bank account number.
-     * 
+     *
      * @param accountNumber
      *            The bank account number to copy.
-     * 
+     *
      * @see #getAccountNumber()
      */
     public void setAccountNumber(String accountNumber) {
@@ -106,10 +106,10 @@ public class BankAccount extends Finance implements Comparable {
 
     /**
      * Setter for the long bank name.
-     * 
+     *
      * @param bankName
      *            The long bank name to copy.
-     * 
+     *
      * @see #getBankName()
      */
     public void setBankName(String bankName) {
@@ -118,10 +118,10 @@ public class BankAccount extends Finance implements Comparable {
 
     /**
      * Setter for the short bank name.
-     * 
+     *
      * @param nickname
      *            The short bank name to copy.
-     * 
+     *
      * @see #getNickname()
      */
     public void setNickname(String nickname) {
@@ -130,10 +130,10 @@ public class BankAccount extends Finance implements Comparable {
 
     /**
      * Setter for the description of this bank entry.
-     * 
+     *
      * @param description
      *            The description to copy.
-     * 
+     *
      * @see #getDescription()
      */
     public void setDescription(String description) {
@@ -142,10 +142,10 @@ public class BankAccount extends Finance implements Comparable {
 
     /**
      * Setter for the bank code (German BLZ).
-     * 
+     *
      * @param bankCode
      *            The bank code to copy.
-     * 
+     *
      * @see #getBankCode()
      */
     public void setBankCode(String bankCode) {
@@ -154,21 +154,20 @@ public class BankAccount extends Finance implements Comparable {
 
     /**
      * Setter for the International Bank Account Number.
-     * 
+     *
      * @param iban
      *            The IBAN to copy.
-     * 
+     *
      * @see #getIBAN()
      */
     public void setIBAN(String iban) {
         this.iban = new String(iban);
     }
 
-
     /**
      * Making the new bank account persistent by saving the actual file as .old, set the id,
      * append *this and write all bank accounts.
-     * 
+     *
      * @throws AppException If an bank account with this nickname exists already, or in case of read or write errors.
      */
     public void create() throws AppException {
@@ -203,7 +202,7 @@ public class BankAccount extends Finance implements Comparable {
 
     /**
      * Remove the bank account.
-     * 
+     *
      * @throws AppException If no bank account entry exists with the given id, or in case of read or write errors.
      */
     public void remove() throws AppException {
@@ -221,13 +220,12 @@ public class BankAccount extends Finance implements Comparable {
         }
         throw new AppException("Kein Bankkonto mit der internen ID " + getId()
                 + " vorhanden!");
-
     }
 
     /**
      * Actualize the given account by id in the persistent storage.
      * The date field is set to the actual date and time.
-     * 
+     *
      * @param accountNumber The new bank account number.
      * @param bankName The new long bank name.
      * @param nickname The new short bank name.
@@ -235,7 +233,7 @@ public class BankAccount extends Finance implements Comparable {
      * @param bankCode The new bank code (German BLZ).
      * @param iban The new International Bank Account Number.
      * @param user The user, who is changing the entry.
-     * 
+     *
      * @throws AppException If no entry found with this id, or in case of read or write errors.
      */
     public void update(String accountNumber, String bankName, String nickname,
@@ -272,24 +270,24 @@ public class BankAccount extends Finance implements Comparable {
 
     /**
      * Compares an bank account entry after the internal identifier.
-     * 
+     *
      * @param o
      *            the BankAccount object to compare
      * @return -1, 0 or 1, see {@link Comparable}
      */
-    public int compareTo(Object o) {
+    public int compareTo(BankAccount o) {
 
-        Integer ai = new Integer(((BankAccount) o).getId());
-        Integer bi = new Integer(id);
+        Integer ai = Integer.valueOf(o.getId());
+        Integer bi = Integer.valueOf(id);
 
         return bi.compareTo(ai);
     }
-    
+
     /**
      * Print the bank account with all fields separated by '|'.
-     * 
+     *
      * @return The String that contains all fields.
-     * 
+     *
      * @see #fromString(String)
      */
     public String toString() {
@@ -301,9 +299,9 @@ public class BankAccount extends Finance implements Comparable {
 
     /**
      * Get all existing bank accounts in an array, sorted by the account number.
-     * 
+     *
      * @return An array of all bank account entries.
-     * 
+     *
      * @throws AppException
      *             in case of problems with reading the bankAccounts file.
      */
@@ -322,15 +320,15 @@ public class BankAccount extends Finance implements Comparable {
 
     /**
      * Returns the short bank name for an BankAccount internal identifier.
-     * 
+     *
      * For the backward compatibility to version 0.1 it gives "?" if the ID is 0
      * and no bank account exists.
-     * 
+     *
      * @param id
      *            The internal bank account identifier.
-     * 
+     *
      * @return The short bank name.
-     * 
+     *
      * @throws AppException
      *             If no such entry exists or in case of read errors.
      */
@@ -353,11 +351,11 @@ public class BankAccount extends Finance implements Comparable {
 
     /**
      * Return the BankAccount object for the given internal identifier.
-     * 
+     *
      * @param id The internal identifier for the BankAccount.
-     * 
+     *
      * @return The BankAccount found.
-     * 
+     *
      * @throws AppException If no BankAccount is found for the internal identifier or in case of read errors.
      */
     public static BankAccount getBankAccountById(int id) throws AppException {
@@ -372,15 +370,15 @@ public class BankAccount extends Finance implements Comparable {
         throw new AppException("Kann kein Bankkonto mit der ID " + id
                 + " finden!");
 
-    } 
-    
+    }
+
     /**
      * Return the BankAccount object for the given short bank name.
-     * 
+     *
      * @param nickname The short bank name for the BankAccount.
-     * 
+     *
      * @return The BankAccount found.
-     * 
+     *
      * @throws AppException If no BankAccount is found with this nickname or in case of read errors.
      */
     public static BankAccount getBankAccountByNickname(String nickname)
@@ -396,18 +394,17 @@ public class BankAccount extends Finance implements Comparable {
         }
         throw new AppException("Kann kein Bankkonto mit der Abkürzung "
                 + nickname + " finden!");
-
     }
-    
+
     /**
      * Read the bank account from a string.
-     * 
+     *
      * @param from The line, from this the entry should be read.
-     * 
+     *
      * @return A complete filled BankAccount object.
-     * 
+     *
      * @throws AppException On parsing errors.
-     * 
+     *
      * @see #toString()
      */
     private static BankAccount fromString(String from) throws AppException {
@@ -454,7 +451,7 @@ public class BankAccount extends Finance implements Comparable {
     /**
      * Read in the bank accounts list.
      * Not as static initializer to have the posibility to throw exceptions.
-     * 
+     *
      * @throws AppException In case of read errors.
      */
     private static void readBankAccounts() throws AppException {
@@ -463,17 +460,18 @@ public class BankAccount extends Finance implements Comparable {
             return;
         }
 
-        allEntries = new Vector();
+        allEntries = new Vector<>();
         String line;
         int lineNumber = 0;
 
         try {
-            BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(Config
-                    .getFileName(BANK_ACCOUNTS)), "UTF-8"));
+            try (BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(Config
+                    .getFileName(BANK_ACCOUNTS)), "UTF-8"))) {
 
-            while ((line = in.readLine()) != null) {
-                ++lineNumber;
-                allEntries.add(fromString(line));
+                while ((line = in.readLine()) != null) {
+                    ++lineNumber;
+                    allEntries.add(fromString(line));
+                }
             }
         } catch (IOException e) {
             // no exception at initialize
@@ -486,15 +484,15 @@ public class BankAccount extends Finance implements Comparable {
                     + lineNumber + ": " + ae.getMessage());
         }
     }
-    
+
     /**
      * Getter for all bank account entries.
      * @see de.hlu.ust.Finance#getAllEntries()
      */
-    protected Vector getAllEntries() {
+    protected Vector<BankAccount> getAllEntries() {
         return allEntries;
     }
-    
+
     /**
      * Getter for the bank accounts file name.
      * @return The relative file name.
@@ -502,7 +500,7 @@ public class BankAccount extends Finance implements Comparable {
     public String getDataFileName() {
         return BANK_ACCOUNTS;
     }
-    
+
     /** The bank account number */
     private String accountNumber;
 
@@ -523,10 +521,10 @@ public class BankAccount extends Finance implements Comparable {
 
     /** The bank accounts file name */
     private static final String BANK_ACCOUNTS = "bankAccounts";
-    
+
     /** To fullfill the {@link Serializable} interface. */
     private static final long serialVersionUID = 1L;
-    
+
     /** All bank account entries. */
-    private static Vector allEntries;    
+    private static Vector<BankAccount> allEntries;
 }

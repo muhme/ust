@@ -45,7 +45,7 @@ try {
         try {
             Integer i = new Integer ( str );
             month = i.intValue();
-        }   
+        }
         catch (Exception e) {
             // ignore, use default
         }
@@ -61,7 +61,7 @@ try {
     }
 
     BankStatement[] bs = BankStatement.getAllBankStatements( month == 0 ? 1 : month, month == 0 ? 12 : month );
-    
+
     out.println ("<CENTER><H1>" + bs.length + " ");
     if (bs.length == 1) {
         out.print ("Bank-Eintrag ");
@@ -76,17 +76,17 @@ try {
 
     if (!print) {
         out.print   ("<form method=\"get\" action=\"ListBankStatements.jsp\">");
-        
+
 %>
-Monat:  
+Monat:
 <!-- dynamic include -->
 <% String pageUrl = "MonthChoosen.jsp?selectValue=" + month; %>
 <jsp:include page="<%= pageUrl %>" flush="true"></jsp:include>
 </td></tr>
-<%        
-        
+<%
+
         out.println (" &nbsp; <input type=submit value=Aktualisieren title=\"Auswahl anzeigen\"> &nbsp; ");
-    
+
         out.println ("<input type=image name=print value=true src=printer.gif title=\"zur Druckansicht\">");
         out.println ("</form>");
     }
@@ -118,7 +118,7 @@ Monat:
 
             BankAccount bankAccount = BankAccount.getBankAccountById (bs[i].getBankAccountId());
 
-            out.print ("<TR>"); 
+            out.print ("<TR>");
 
             out.println ("<TD ALIGN=RIGHT>");
             if (print) {
@@ -144,7 +144,7 @@ Monat:
                 val = "+" + val;    // to get it green, if the value is positive
             }
             out.print ( TableData.right( TableData.colorize ( val ) ) );
-        
+
             out.println ("</TR>");
         }
         out.println ("</TABLE>");

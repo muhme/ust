@@ -19,13 +19,13 @@ import java.io.InputStreamReader;
 
 /**
  * Booking object stores all informations about a single booking entry.
- * 
+ *
  * For all calculations the bookings gross value is taken as base. The vat and
  * the net values are calculated from the gross value and the vat rate.
- * 
+ *
  * @author Heiko Lübbe
  */
-public class Booking extends Finance implements Comparable {
+public class Booking extends Finance implements Comparable<Booking> {
 
     /**
      * For interface {@link Serializable}.
@@ -34,7 +34,7 @@ public class Booking extends Finance implements Comparable {
 
     /**
      * Get this bookings gross in Euro Cents.
-     * 
+     *
      * @return the gross in Euro Cents, rounded mercantile.
      */
     public int getGross() {
@@ -47,7 +47,7 @@ public class Booking extends Finance implements Comparable {
 
     /**
      * Get this bookings gross as String.
-     * 
+     *
      * @return the gross, e.g. "90,40"
      */
     public String getGrossAsString() {
@@ -60,9 +60,9 @@ public class Booking extends Finance implements Comparable {
 
     /**
      * Getter for the <tt>description</tt> field.
-     * 
+     *
      * @return a copy of the bookings description.
-     * 
+     *
      * @see #setDescription(String)
      */
     public String getDescription() {
@@ -71,9 +71,9 @@ public class Booking extends Finance implements Comparable {
 
     /**
      * Getter for the <tt>bankStatementId</tt> field.
-     * 
+     *
      * @return the bank statements id or 0 for a cash booking.
-     * 
+     *
      * @see #setBankStatementId(int)
      */
     public int getBankStatementId() {
@@ -82,9 +82,9 @@ public class Booking extends Finance implements Comparable {
 
     /**
      * Getter for the <tt>accountId</tt> field.
-     * 
+     *
      * @return the accounts id.
-     * 
+     *
      * @see #setAccountId(int)
      */
     public int getAccountId() {
@@ -93,9 +93,9 @@ public class Booking extends Finance implements Comparable {
 
     /**
      * Getter for the <tt>bookingDate</tt> field.
-     * 
+     *
      * @return the bookings date.
-     * 
+     *
      * @see #setBookingDate(GregorianCalendar)
      */
     public GregorianCalendar getBookingDate() {
@@ -104,7 +104,7 @@ public class Booking extends Finance implements Comparable {
 
     /**
      * Get the bookings date as {@link String}.
-     * 
+     *
      * @return the bookings date or the actual date if no booking date is set.
      */
     public String getBookingDateAsString() {
@@ -121,9 +121,9 @@ public class Booking extends Finance implements Comparable {
     /**
      * Calculating this bookings VAT value. The calculation depends on the
      * bookings gross value and the vat rate.
-     * 
+     *
      * @return the bookings vat value as Euro Cent.
-     * 
+     *
      * @see #calcNet()
      */
     public int calcVat() {
@@ -133,9 +133,9 @@ public class Booking extends Finance implements Comparable {
     /**
      * Calculating this bookings net value. The calculation depends on the
      * bookings gross value and the vat rate.
-     * 
+     *
      * @return the bookings vat value as Euro Cent.
-     * 
+     *
      * @see #calcVat()
      */
     public int calcNet() {
@@ -144,10 +144,10 @@ public class Booking extends Finance implements Comparable {
 
     /**
      * Setter for the <tt>gross</tt> field.
-     * 
+     *
      * @param gross
      *            this bookings gross in Cent.
-     * 
+     *
      * @see #getGross()
      */
     public void setGross(int gross) {
@@ -157,10 +157,10 @@ public class Booking extends Finance implements Comparable {
     /**
      * Setter for the <tt>description</tt> field. The given parameter is
      * copied.
-     * 
+     *
      * @param description
      *            this bookings description.
-     * 
+     *
      * @see #getDescription()
      */
     public void setDescription(String description) {
@@ -169,10 +169,10 @@ public class Booking extends Finance implements Comparable {
 
     /**
      * Setter for the <tt>bankStatementId</tt> field.
-     * 
+     *
      * @param bankStatementId
      *            the bank statements id to set.
-     * 
+     *
      * @see #getBankStatementId()
      */
     public void setBankStatementId(int bankStatementId) {
@@ -181,7 +181,7 @@ public class Booking extends Finance implements Comparable {
 
     /**
      * Setter for the <tt>accountId</tt> field.
-     * 
+     *
      * @param accountId
      *            the account id to set.
      */
@@ -192,10 +192,10 @@ public class Booking extends Finance implements Comparable {
     /**
      * Setter for the <tt>bookingDate</tt> field. The given parameter is
      * copied.
-     * 
+     *
      * @param bookingDate
      *            the booking date to set.
-     * 
+     *
      * @see #getBookingDate()
      * @see #setBookingDate(String)
      */
@@ -205,10 +205,10 @@ public class Booking extends Finance implements Comparable {
 
     /**
      * Set the booking date from a string like my birthday "19.12.1961".
-     * 
+     *
      * @param date
      *            the booking date to set.
-     * 
+     *
      * @throws AppException
      *             if the date parsing fails.
      */
@@ -244,7 +244,7 @@ public class Booking extends Finance implements Comparable {
     /**
      * Get all existing bookings in an array, sorted first by booking date and
      * second after the bank statement.
-     * 
+     *
      * @return An array of all bookings.
      * @throws AppException
      *             In case of read errors.
@@ -257,7 +257,7 @@ public class Booking extends Finance implements Comparable {
      * Selecting bookings from a starting month, until to an ending month and a
      * accounting number. Getting the result in an array, sorted first by
      * booking date and second after the bank statement.
-     * 
+     *
      * @param from
      *            From that month (1...12).
      * @param to
@@ -274,7 +274,7 @@ public class Booking extends Finance implements Comparable {
 
         readBookings();
 
-        Vector list = new Vector();
+        Vector<Booking> list = new Vector<>();
 
         for (int i = 0; i < allEntries.size(); ++i) {
             month = ((Booking) allEntries.elementAt(i)).getBookingDate().get(
@@ -305,7 +305,7 @@ public class Booking extends Finance implements Comparable {
 
     /**
      * Get an booking entry by the given booking identifier.
-     * 
+     *
      * @param id
      *            The booking identifier.
      * @return A reference to the booking entry found.
@@ -330,7 +330,7 @@ public class Booking extends Finance implements Comparable {
 
     /**
      * Get an booking entry by the given bank statement identifier.
-     * 
+     *
      * @param bankStatementId
      *            The bank statement identifier.
      * @return A reference to the booking entry found.
@@ -358,7 +358,7 @@ public class Booking extends Finance implements Comparable {
      * Create a new booking entry by making the new booking entry persistent.
      * Saving the file as .old, setting the id, append *this and write all
      * bookings.
-     * 
+     *
      * @throws AppException
      *             In case of read or write errors.
      */
@@ -388,7 +388,7 @@ public class Booking extends Finance implements Comparable {
 
     /**
      * Remove this booking entry.
-     * 
+     *
      * @throws AppException
      *             In case of read or write errors, or if the entry isn't found.
      */
@@ -412,7 +412,7 @@ public class Booking extends Finance implements Comparable {
 
     /**
      * Actualize the given booking by id in the persistence.
-     * 
+     *
      * @param gross
      *            The new gross value.
      * @param description
@@ -463,40 +463,40 @@ public class Booking extends Finance implements Comparable {
                 + " vorhanden!");
 
     }
-    
+
     /**
      * This method determines the booking year by average booking entries year.
      * <p>
      * If less then three booking entries exist or in case of read errors, use simple this year.
-     * 
+     *
      * @return The guessed booking year.
      */
     public static int guessBookingYear() {
-        
+
         int i;
         int sum = 0;
-        
+
         try {
             readBookings();
         }
         catch (AppException ae) {
             /* do nothing, use simple this year */
         }
-        
+
         for (i = 0; i < allEntries.size(); ++i) {
             sum += ((Booking) allEntries.elementAt(i)).getBookingDate().get(Calendar.YEAR);
         }
-        
+
         if (i < 3) {
             return Calendar.getInstance().get(Calendar.YEAR);
         }
-        
+
         return sum / i;
     }
 
     /**
      * Print the booking entry with all fields.
-     * 
+     *
      * @return The booking entry with all fields separated by '|'.
      * @see #fromString(String)
      */
@@ -515,7 +515,7 @@ public class Booking extends Finance implements Comparable {
 
     /**
      * Parsing an booking entry from a {@link String}.
-     * 
+     *
      * @param from
      *            The booking entry with all fields separated by '|'.
      * @return The parsed booking entry.
@@ -594,12 +594,12 @@ public class Booking extends Finance implements Comparable {
         return booking;
 
     }
-    
+
     /**
      * Getter for all booking entries.
      * @see de.hlu.ust.Finance#getAllEntries()
      */
-    protected Vector getAllEntries() {
+    protected Vector<Booking> getAllEntries() {
         return allEntries;
     }
 
@@ -610,7 +610,7 @@ public class Booking extends Finance implements Comparable {
     public String getDataFileName() {
         return BOOKINGS;
     }
-    
+
     /** This bookings gross value */
     private Money gross;
 
@@ -634,15 +634,15 @@ public class Booking extends Finance implements Comparable {
 
     /** Flag, if the bookings data file already read */
     static boolean fileIsRead = false;
-    
+
     /** All booking entries. */
-    private static Vector allEntries;
+    private static Vector<Booking> allEntries;
 
     /**
      * Read in all bookings from the data file.
      * <p>
      * Not as static initializer to have the posibility to throw exceptions.
-     * 
+     *
      * @throws AppException
      *             In case of read errors.
      */
@@ -652,16 +652,18 @@ public class Booking extends Finance implements Comparable {
             return;
         }
 
-        allEntries = new Vector();
+        allEntries = new Vector<>();
         String line;
         int lineNumber = 0;
 
         try {
-            BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(Config
-                    .getFileName(BOOKINGS)), "UTF-8"));
-            while ((line = in.readLine()) != null) {
-                ++lineNumber;
-                allEntries.add(fromString(line));
+            try (BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(Config
+                    .getFileName(BOOKINGS)), "UTF-8"))) {
+
+                while ((line = in.readLine()) != null) {
+                    ++lineNumber;
+                    allEntries.add(fromString(line));
+                }
             }
             fileIsRead = true;
         } catch (IOException e) {
@@ -681,12 +683,12 @@ public class Booking extends Finance implements Comparable {
     /**
      * Compares Bookings first after the booking date and second after the bank
      * statement.
-     * 
+     *
      * @param object
      *            The second Booking object to compare with.
      * @return -1, 0 or 1, see {@link Comparable}
      */
-    public int compareTo(Object object) {
+    public int compareTo(Booking object) {
 
         Booking booking = (Booking) object;
         if (booking == null) {
@@ -740,7 +742,7 @@ public class Booking extends Finance implements Comparable {
 
     /**
      * Test case.
-     * 
+     *
      * @param args
      */
     public static void main(String[] args) {

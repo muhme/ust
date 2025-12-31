@@ -38,13 +38,13 @@ import java.io.OutputStreamWriter;
  * <li><code>IN_CASH_BOX</code> and</li>
  * <li><code>OUT_CASH_BOX</code>.</li>
  * </ul>
- * 
+ *
  * @author Heiko Lübbe
  */
 public abstract class Finance implements Serializable {
 
     /** Program version. */
-    public static final String VERSION = "0.2.9";
+    public static final String VERSION = "0.2.10";
 
     /** Program date. */
     public static final String DATE = "31. Dezember 2025";
@@ -75,7 +75,7 @@ public abstract class Finance implements Serializable {
 
     /**
      * Constructor with the given VAT percent value.
-     * 
+     *
      * @param vat
      *            Value added tax percents.
      */
@@ -94,7 +94,7 @@ public abstract class Finance implements Serializable {
     /**
      * Getter for the date field. If the field isn't set, the actual date and
      * time is returned.
-     * 
+     *
      * @return An copy of the objects date field.
      * @see #setDate(GregorianCalendar)
      * @see #getDateAsString()
@@ -109,7 +109,7 @@ public abstract class Finance implements Serializable {
     /**
      * Get the date field as string. If the field isn't set, the actual date and
      * time is returned.
-     * 
+     *
      * @return A string representation of the objects date field.
      * @see #getDate()
      */
@@ -122,7 +122,7 @@ public abstract class Finance implements Serializable {
 
     /**
      * Getter for the users name field.
-     * 
+     *
      * @return The users name field or <code>null</code>.
      * @see #setUser(String)
      */
@@ -134,7 +134,7 @@ public abstract class Finance implements Serializable {
      * Get the value added tax field as {@link String}.
      * <p>
      * An appending ".0" is removed and American '.' is converted to German ','.
-     * 
+     *
      * @return VAT value as String.
      */
     public String getVatAsString() {
@@ -148,7 +148,7 @@ public abstract class Finance implements Serializable {
 
     /**
      * Getter for the value added tax field.
-     * 
+     *
      * @return The value added tax percent value.
      * @see #setVat(double)
      */
@@ -158,7 +158,7 @@ public abstract class Finance implements Serializable {
 
     /**
      * Checks if this Finance has a VAT value.
-     * 
+     *
      * @return true if this Finance has a VAT value.
      */
     public boolean hasVat() {
@@ -167,7 +167,7 @@ public abstract class Finance implements Serializable {
 
     /**
      * Getter for the internal identifier field.
-     * 
+     *
      * @return The internal identifier.
      * @see #setId(int)
      */
@@ -177,7 +177,7 @@ public abstract class Finance implements Serializable {
 
     /**
      * Setter for the internal identifier field.
-     * 
+     *
      * @param id
      *            The internal identifier to set.
      * @see #getId()
@@ -188,7 +188,7 @@ public abstract class Finance implements Serializable {
 
     /**
      * Setter for the vat field.
-     * 
+     *
      * @param vat
      *            The value added tax in percent to set.
      * @see #getVat()
@@ -199,7 +199,7 @@ public abstract class Finance implements Serializable {
 
     /**
      * Setter for the users name field.
-     * 
+     *
      * @param user
      *            User name as first and family name or <code>null</code>.
      * @see #getUser()
@@ -213,7 +213,7 @@ public abstract class Finance implements Serializable {
      * <p>
      * The field presents the the date and time of creating or last changing the
      * entry.
-     * 
+     *
      * @param date
      *            The date field to copy or <code>null</code>.
      * @see #getDate()
@@ -228,7 +228,7 @@ public abstract class Finance implements Serializable {
 
     /**
      * Set the date field from a String.
-     * 
+     *
      * @param date
      *            The date and time in the a format like "19.12.1961 12:00".
      * @throws AppException
@@ -242,7 +242,7 @@ public abstract class Finance implements Serializable {
     /**
      * Parse a {@link String}for date and time in the format of "19.12.1961
      * 12:00".
-     * 
+     *
      * @param date
      *            The date and time to parse.
      * @return The parsed date and time.
@@ -310,7 +310,7 @@ public abstract class Finance implements Serializable {
     /**
      * Converts date and time from a {@link GregorianCalendar}to a
      * {@link String}in the format of e.g. "19.12.1961 12:00".
-     * 
+     *
      * @param date
      *            {@link GregorianCalendar}to convert.
      * @return Converted date and time.
@@ -329,7 +329,7 @@ public abstract class Finance implements Serializable {
     /**
      * Converts date from a {@link GregorianCalendar}to a {@link String}in the
      * format of e.g. "19.12.1961".
-     * 
+     *
      * @param date
      *            {@link GregorianCalendar}to convert.
      * @return Converted date and time.
@@ -345,7 +345,7 @@ public abstract class Finance implements Serializable {
 
     /**
      * Adds a leading zero to a single digit.
-     * 
+     *
      * @param i
      *            The digit.
      * @return <code>"09"</code> for 9,<code>"10"</code> for 10 and so on.
@@ -386,14 +386,14 @@ public abstract class Finance implements Serializable {
 
     /**
      * Getter for the in-memory double of the persistent list of all entries.
-     * 
+     *
      * @return All entries as vector.
      */
-    protected abstract Vector getAllEntries();
+    protected abstract Vector<? extends Finance> getAllEntries();
 
     /**
      * Getter for the relative data file name (w/o the path).
-     * 
+     *
      * @return The relative data file name.
      */
     protected abstract String getDataFileName();
@@ -409,7 +409,7 @@ public abstract class Finance implements Serializable {
      * <p>
      * Replace all occurences of '|' whith an space, because it is used as field
      * separator.
-     * 
+     *
      * @param str
      *            The input String.
      * @return A new String.
@@ -426,7 +426,7 @@ public abstract class Finance implements Serializable {
      * Get an {@link String}from the file storage.
      * <p>
      * Removing single spaces (they are inserted for the {@link StringTokenizer}).
-     * 
+     *
      * @param str
      *            The input String.
      * @return An empty string or the given string..
@@ -439,7 +439,7 @@ public abstract class Finance implements Serializable {
 
     /**
      * Indicating the data file is readable.
-     * 
+     *
      * @return <code>true</code> if the data file is readable.
      */
     public boolean isReadable() {
@@ -449,7 +449,7 @@ public abstract class Finance implements Serializable {
 
     /**
      * Indicating the data file is read-only.
-     * 
+     *
      * @return <code>true</code> if the data file is read-only.
      */
     public boolean isReadOnly() {
@@ -459,7 +459,7 @@ public abstract class Finance implements Serializable {
 
     /**
      * Creates an empty data file.
-     * 
+     *
      * @throws AppException
      *             If the new data file cannot be created.
      */
@@ -479,7 +479,7 @@ public abstract class Finance implements Serializable {
 
     /**
      * Save the all entries Vector to a file.
-     * 
+     *
      * @throws AppException
      *             In case of write errors etc.
      */
@@ -521,19 +521,19 @@ public abstract class Finance implements Serializable {
                 throw new AppException("Die Datei \"" + fullFileName
                         + "\" kann nicht zum Schreiben geöffnet werden!");
             }
-            PrintWriter p = new PrintWriter(out);
+            try (PrintWriter p = new PrintWriter(out)) {
 
-            // write all account entries
-            for (int i = 0; i < getAllEntries().size(); ++i) {
-                p.println(getAllEntries().elementAt(i));
-            }
+                // write all account entries
+                for (int i = 0; i < getAllEntries().size(); ++i) {
+                    p.println(getAllEntries().elementAt(i));
+                }
 
-            // check for I/O errors
-            if (p.checkError()) {
-                throw new AppException("Fehler beim Schreiben der Datei "
-                        + fullFileName);
+                // check for I/O errors
+                if (p.checkError()) {
+                    throw new AppException("Fehler beim Schreiben der Datei "
+                            + fullFileName);
+                }
             }
-            p.close();
 
         } catch (Throwable t) {
             // catch all errors during writing the new file

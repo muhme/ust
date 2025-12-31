@@ -55,7 +55,7 @@ public class Money {
 
     /**
      * Constructor with the given money value in Cent.
-     * 
+     *
      * @param cent
      *            The initial money value in Cent.
      */
@@ -65,7 +65,7 @@ public class Money {
 
     /**
      * Constructor with the given money value in Euro and Cent.
-     * 
+     *
      * @param euro
      *            The initial money value in Euro
      * @param cent
@@ -78,7 +78,7 @@ public class Money {
     /**
      * Constructor, which sets the Money value from strings like "1.024,99",
      * "42,00" or "42".
-     * 
+     *
      * @param money
      *            The money value as string prasentation.
      * @throws AppException
@@ -100,7 +100,7 @@ public class Money {
 
     /**
      * Add the given cent-value, which can be negative.
-     * 
+     *
      * @param cent
      *            Cents to add.
      */
@@ -110,17 +110,17 @@ public class Money {
 
     /**
      * Getter for the money value as Cent * 10.
-     * 
+     *
      * @return The money value as Cent * 10.
      */
     public long getValue() {
-        Double D = new Double(value);
+        Double D = Double.valueOf(value);
         return D.longValue();
     }
 
     /**
      * Setter for the money value in Cent * 10.
-     * 
+     *
      * @param value
      *            The money value as Cent * 10.
      */
@@ -130,7 +130,7 @@ public class Money {
 
     /**
      * Gets the money value in Cents rounded by the given parameter.
-     * 
+     *
      * @param round
      *            <code>ROUND_DOWN_TENTH_CENTS</code> or
      *            <code>ROUND_MERCANTILE</code>.
@@ -151,33 +151,33 @@ public class Money {
                 }
             }
         }
-        Double D = new Double(i / 10);
+        Double D = Double.valueOf(i / 10);
         return D.intValue();
     }
 
     /**
      * Gets the money values Euro part.
-     * 
+     *
      * @return The money values Euro part.
      */
     public int getEuro() {
-        Double D = new Double(value / 1000);
+        Double D = Double.valueOf(value / 1000);
         return D.intValue();
     }
 
     /**
      * Gets the money values Cent part.
-     * 
+     *
      * @return The money values Cent part.
      */
     public int getCent() {
-        Double D = new Double((value % 1000) / 10);
+        Double D = Double.valueOf((value % 1000) / 10);
         return D.intValue();
     }
 
     /**
      * Gets the money value rounded mercantile and added with the currency.
-     * 
+     *
      * @see java.lang.Object#toString()
      */
     public String toString() {
@@ -186,7 +186,7 @@ public class Money {
 
     /**
      * Get the moneys value as string, rounded by the given parameter.
-     * 
+     *
      * @param round
      *            <code>ROUND_DOWN_TENTH_CENTS</code> or
      *            <code>ROUND_MERCANTILE</code>.
@@ -199,7 +199,7 @@ public class Money {
     /**
      * Calculate the net value from a given gross value and the VAT percents and
      * return the result as int.
-     * 
+     *
      * @param gross
      *            The gross value in Cent.
      * @param vatPercent
@@ -212,7 +212,7 @@ public class Money {
             // 100 % VAT means only VAT
             m.setValue(0);
         } else {
-            Double D = new Double((double) gross * 1000 / (100 + vatPercent));
+            Double D = Double.valueOf((double) gross * 1000 / (100 + vatPercent));
             m.setValue(D.longValue());
         }
         return m.getInCents(ROUND_MERCANTILE);
@@ -221,7 +221,7 @@ public class Money {
     /**
      * Calculate the net value from a given gross value and VAT percents and
      * return the result as string.
-     * 
+     *
      * @param gross
      *            The gross value in Cent.
      * @param vatPercent
@@ -236,7 +236,7 @@ public class Money {
     /**
      * Calculate the value added tax value from a given gross value and the VAT
      * percents and return the result as int.
-     * 
+     *
      * @param gross
      *            The gross value in Cent.
      * @param vatPercent
@@ -251,7 +251,7 @@ public class Money {
     /**
      * Calculate the value added tax value from a given gross value and VAT
      * percents and return the result as string.
-     * 
+     *
      * @param gross
      *            The gross value in Cent.
      * @param vatPercent
@@ -268,7 +268,7 @@ public class Money {
 
     /**
      * some test cases
-     * 
+     *
      * @param args
      */
     public static void main(String[] args) {
@@ -334,7 +334,7 @@ public class Money {
     /**
      * check that this test is true increment the test case number, give ok or
      * failed message
-     * 
+     *
      * @param result
      */
     private static void test(boolean result) {

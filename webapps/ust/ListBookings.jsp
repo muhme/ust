@@ -83,7 +83,7 @@ try {
 
     // create a choose-box which bookings are to show
     // Alle | Nur Kasse | Ohne Kasse (d.h. alle mit BankStatement) | Bankkonto 1 | Bankkonto 2 ...
-    
+
     BankAccount[] BankAccounts = BankAccount.getAllBankAccounts();
     int numberOfCashTypes;
 
@@ -184,7 +184,7 @@ try {
             // ignore, use default
         }
     }
-    
+
     // 1st from request parameter "to"
     str = request.getParameter ("to");
     if (str != null) {
@@ -249,7 +249,7 @@ try {
         Account account = Account.getAccountByNumber (accountNumber);
         out.print (" für das Konto " + accountNumber + " " + account.getName());
     }
-    
+
     if (taxType == TAX_TYPE_SALES) {
         out.print (" (nur Umsatzsteuer)");
     } else if (taxType == TAX_TYPE_PREVAT) {
@@ -270,11 +270,11 @@ if (!print) {
     out.print   ("<form method=\"get\" action=\"ListBookings.jsp\">");
 
 %>
-Von: 
+Von:
 <!-- dynamic include -->
 <% String pageUrlFrom = "MonthChoosen.jsp?startJanuary=true&selectName=from&selectValue=" + from; %>
 <jsp:include page="<%= pageUrlFrom %>" flush="true"></jsp:include>
-Bis: 
+Bis:
 <!-- dynamic include -->
 <% String pageUrlTo = "MonthChoosen.jsp?startJanuary=true&selectName=to&selectValue=" + to; %>
 <jsp:include page="<%= pageUrlTo %>" flush="true"></jsp:include>
@@ -313,7 +313,7 @@ Bis:
     out.println ("</form>");
 
     if (!(new Booking()).isReadOnly()) {
-        out.println ("<form method=\"post\" action=\"Booking.jsp?id=0\">");    
+        out.println ("<form method=\"post\" action=\"Booking.jsp?id=0\">");
         out.println ("<input type=\"submit\" name=\"new\" value=\"Neu Anlegen\" title=\"eine neue Buchung anlegen\">");
         out.println ("</form>");
     }
@@ -368,7 +368,7 @@ if (b.length > 0) {
         if ((taxType == TAX_TYPE_BOTH) && ! b[i].hasVat() && (account.getKind() != Finance.PREVAT)) {
             continue;
         }
-        // only one bank account choosen?   
+        // only one bank account choosen?
         if ((cashType > CASH_TYPE_WITHOUT_CASH) &&  b[i].getBankStatementId() != 0) {
             try {
                 BankStatement bs = BankStatement.getBankStatementById (b[i].getBankStatementId());
@@ -381,7 +381,7 @@ if (b.length > 0) {
                 out.println ("Probleme beim Vergleichen des Bankkontos!");
             }
         }
-    
+
         out.println ("<TR>");
         entries++;
 
@@ -419,7 +419,7 @@ if (b.length > 0) {
 
         val = TableData.colorize (val);
         out.print (TableData.right (val));
-        
+
         if (account.getKind() == Finance.PREVAT) {
             val = null;
         } else {
@@ -439,7 +439,7 @@ if (b.length > 0) {
 
 
         // *** %
-    
+
         val = account.getKind() != Finance.PREVAT ? b[i].getVatAsString() : null;
         out.print (TableData.right (val));
 
@@ -452,7 +452,7 @@ if (b.length > 0) {
             val = "+" + val;    // green
         } else if ((account.getKind() == Finance.OUT) || (account.getKind() == Finance.OUT_CASH_BOX)) {
             val = "-" + val;    // red
-        }       
+        }
         // else: black
 
         // *** USt

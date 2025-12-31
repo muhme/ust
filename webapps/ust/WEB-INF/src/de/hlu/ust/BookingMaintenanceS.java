@@ -12,7 +12,7 @@ import java.util.*;
 
 /**
  * This class is a servlet that maintains bookings.
- * 
+ *
  * @author Heiko Lübbe
  */
 public class BookingMaintenanceS extends HttpServlet {
@@ -26,7 +26,7 @@ public class BookingMaintenanceS extends HttpServlet {
      * attribute error (shown in red later) and redirects to the Booking.jsp. In
      * case of all other exceptions no redirect is send. The servlet print the
      * parameters in the beginning and extend this with the stack trace.
-     * 
+     *
      * @param req
      *            The HTTP Servlet request.
      * @param res
@@ -52,14 +52,14 @@ public class BookingMaintenanceS extends HttpServlet {
         int position = 0;
         // Must set the content type first
         res.setContentType("text/html");
-        
+
         // Now we can obtain a PrintWriter
         PrintWriter out = res.getWriter();
         HttpSession session = req.getSession(true);
         // show all set parameters (only shown in error case)
         out.println("parameters:<BR>");
         String param;
-        for (Enumeration e = req.getParameterNames(); e.hasMoreElements();) {
+        for (Enumeration<String> e = req.getParameterNames(); e.hasMoreElements();) {
             param = e.nextElement().toString();
             out.println(param + "=" + req.getParameter(param) + "<BR>");
         }
@@ -101,8 +101,8 @@ public class BookingMaintenanceS extends HttpServlet {
             }
             if ((s = (String) session.getAttribute("month")) != null) {
                 // default: this year
-                String year = (new Integer((new GregorianCalendar())
-                        .get(Calendar.YEAR))).toString();
+                String year = Integer.valueOf((new GregorianCalendar())
+                        .get(Calendar.YEAR)).toString();
                 try {
                     year = (String) session.getAttribute("year");
                 } catch (Exception e) {

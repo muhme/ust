@@ -18,7 +18,7 @@ import jakarta.servlet.http.HttpSession;
 
 /**
  * This class is a servlet that maintains information about accounts.
- * 
+ *
  * @author Heiko Lübbe
  */
 public class AccountMaintenanceS extends HttpServlet {
@@ -32,7 +32,7 @@ public class AccountMaintenanceS extends HttpServlet {
      * in red later) and redirects to the Account.jsp. In case of all other
      * exceptions no redirect is send. The servlet print the parameters in the
      * beginning and extend this with the stack trace.
-     * 
+     *
      * @param req
      *            The HTTP Servlet request.
      * @param res
@@ -46,7 +46,7 @@ public class AccountMaintenanceS extends HttpServlet {
 
         // Must set the content type first
         res.setContentType("text/html");
-        
+
         // Now we can obtain a PrintWriter
         PrintWriter out = res.getWriter();
 
@@ -55,7 +55,7 @@ public class AccountMaintenanceS extends HttpServlet {
         // print all parameters
         out.println("parameters:<BR>");
         String param;
-        for (Enumeration e = req.getParameterNames(); e.hasMoreElements();) {
+        for (Enumeration<String> e = req.getParameterNames(); e.hasMoreElements();) {
             param = e.nextElement().toString();
             out.println(param + "=" + req.getParameter(param) + "<BR>");
         }
@@ -104,7 +104,7 @@ public class AccountMaintenanceS extends HttpServlet {
                         hasBankStatement, vat, user);
                 session.setAttribute("message", "Das Konto " + name + " ("
                         + number + ") wurde geändert.");
-                
+
                 // using the configured user name?
                 String configUser = Config.getUserName();
                 if (!user.equalsIgnoreCase(configUser)) {

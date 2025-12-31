@@ -19,7 +19,7 @@ import java.io.InputStreamReader;
 /**
  * Config values, set by web-xml' context-param, java properties or hard coded
  * defaults.
- * 
+ *
  * @author Heiko Lübbe
  */
 public class Config {
@@ -38,7 +38,7 @@ public class Config {
 
     /** The booking year. */
     protected static int iBookingYear;
-    
+
     /** The instance tag, e.g. the year. */
     protected static String iTag;
 
@@ -97,7 +97,7 @@ public class Config {
 
     /**
      * Get an absolute file name for the given relative file name.
-     * 
+     *
      * @param relativeFileName
      *            The relative file name.
      * @return The absolute filename with the path.
@@ -109,7 +109,7 @@ public class Config {
 
     /**
      * Get the currency or <code>null</code>.
-     * 
+     *
      * @return The configured currency sign.
      */
     public static String getCurrency() {
@@ -118,7 +118,7 @@ public class Config {
 
     /**
      * Get the users name or <code>null</code>.
-     * 
+     *
      * @return The configured user name.
      */
     public static String getUserName() {
@@ -127,7 +127,7 @@ public class Config {
 
     /**
      * Getter for the file path.
-     * 
+     *
      * @return The configured file path or <code>null</code>.
      * @see #setFilePath(String)
      */
@@ -137,7 +137,7 @@ public class Config {
 
     /**
      * Get the tax number or <code>null</code>.
-     * 
+     *
      * @return The configured tax number.
      */
     public static String getTaxNumber() {
@@ -146,7 +146,7 @@ public class Config {
 
     /**
      * Getter for the booking year.
-     * 
+     *
      * @return The booking year.
      * @see #setBookingYear(int)
      */
@@ -157,7 +157,7 @@ public class Config {
         }
         return iBookingYear;
     }
-    
+
     /**
      * Getter for the instance tag.
      * @return Returns the tag or "ust" if no tag is set.
@@ -166,7 +166,7 @@ public class Config {
     public static String getTag() {
         return iTag == null ? "ust" : iTag;
     }
-    
+
     /**
      * Setter for the instance tag.
      * @param tag The instance tag to set or <code>null</code>.
@@ -174,10 +174,10 @@ public class Config {
     public static void setTag(String tag) {
         iTag = tag;
     }
-    
+
     /**
      * Setter for the booking year.
-     * 
+     *
      * @param year
      *            The year to set as booking year.
      * @see #getBookingYear()
@@ -188,7 +188,7 @@ public class Config {
 
     /**
      * Set the currency sign or <code>null</code>.
-     * 
+     *
      * @param currency
      *            The currency sign to set or <code>null</code>.
      */
@@ -199,7 +199,7 @@ public class Config {
 
     /**
      * Set the file path for the data files.
-     * 
+     *
      * @param filePath
      *            The file path to set or <code>null</code>.
      * @see #getFilePath()
@@ -210,7 +210,7 @@ public class Config {
 
     /**
      * Set the tax number.
-     * 
+     *
      * @param taxNumber
      *            The tax number to set or <code>null</code>.
      */
@@ -221,7 +221,7 @@ public class Config {
 
     /**
      * Set the user name for all new entries.
-     * 
+     *
      * @param userName
      *            The users name to set or <code>null</code>.
      */
@@ -231,7 +231,7 @@ public class Config {
 
     /**
      * Getter to check if web.xml's context-param already set.
-     * 
+     *
      * @return Returns true or false.
      */
     public static boolean isContextParamRead() {
@@ -261,9 +261,9 @@ public class Config {
      * @throws AppException In case of write problems.
      */
     public static void createVersionFile() throws AppException {
-        
+
         final String fullFileName = getFileName(VERSION);
-        
+
         try {
             FileWriter out = new FileWriter(fullFileName);
             PrintWriter printWriter = new PrintWriter(out);
@@ -277,10 +277,10 @@ public class Config {
 
     /**
      * Read in the data version number.
-     * 
+     *
      * @throws AppException
      *             If the version isn't supported.
-     * 
+     *
      */
     public static void checkDataFilesVersionUpdates() throws AppException {
 
@@ -292,17 +292,18 @@ public class Config {
         }
 
         try {
-            BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(fileName), "UTF-8"));
+            try (BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(fileName), "UTF-8"))) {
 
-            String line = in.readLine();
-            if (!line.equals(version)) {
-                throw new AppException("Die in der Datei \"" + fileName
-                        + "\" gefundene Version ist \"" + line
-                        + "\" und nicht \"" + version + "\"!");
-            }
-            if (in.readLine() != null) {
-                throw new AppException("Mehr als eine Zeile in der Datei \""
-                        + fileName + "\"!");
+                String line = in.readLine();
+                if (!line.equals(version)) {
+                    throw new AppException("Die in der Datei \"" + fileName
+                            + "\" gefundene Version ist \"" + line
+                            + "\" und nicht \"" + version + "\"!");
+                }
+                if (in.readLine() != null) {
+                    throw new AppException("Mehr als eine Zeile in der Datei \""
+                            + fileName + "\"!");
+                }
             }
         } catch (FileNotFoundException fne) {
             // update from old versions to 0.2.3
@@ -317,7 +318,7 @@ public class Config {
 
     /**
      * Version converting code from 0.2.3 to any later version.
-     * 
+     *
      * @throws AppException
      *             Ever. In case of read or write problems. Or to mark the
      *             converting.

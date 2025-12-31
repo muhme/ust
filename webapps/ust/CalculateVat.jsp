@@ -47,7 +47,7 @@ try {
         try {
             Integer i = new Integer (request.getParameter ("month"));
             month = i.intValue();
-        }   
+        }
         catch (Exception e) {
             // ignore, use default
         }
@@ -61,19 +61,19 @@ try {
             // ignore, use default
         }
     }
-    
+
     out.print ("<CENTER><H1>Rechnung zur ");
     if (month != 0) {
         out.print ("USt-Voranmeldung " + Finance.months[month]);
     } else {
         out.print ("USt-Erklärung");
     }
-    out.print (" " + Config.getBookingYear() );    
+    out.print (" " + Config.getBookingYear() );
     out.println ("</H1>");
 
     int from = 1;    // default from January
     int to = 12;     // default until December
-    
+
     if (month > 0 && month < 13) {
         // monthly
         from = month;
@@ -81,7 +81,7 @@ try {
     } else if (month == 13) {
         // 1st quarter
         from = 1;
-        to = 3;        
+        to = 3;
     } else if (month == 14) {
         // 2nd quarter
         from = 4;
@@ -94,7 +94,7 @@ try {
         // 4th quarter
         from = 10;
         to = 12;
-    }    
+    }
     Booking bookings[] = Booking.getAllBookings (from, to, 0);
 
     int netIn7  = 0;
@@ -108,14 +108,14 @@ try {
 
     if (!print) {
     out.println ("<form method=\"get\" action=\"CalculateVat.jsp\">");
-    
+
 %>
-Monat: 
+Monat:
 <!-- dynamic include -->
 <% String pageUrl = "MonthChoosen.jsp?withQuarters=true&selectValue=" + month; %>
 <jsp:include page="<%= pageUrl %>" flush="true"></jsp:include>
 <%
-        
+
     out.println (" &nbsp; <input type=submit value=Aktualisieren title=\"Auswahl anzeigen\"> &nbsp; ");
     out.println ("<input type=image name=print value=true src=printer.gif title=\"zur Druckansicht\">");
     out.println ("</form>");
@@ -142,7 +142,7 @@ Monat:
             preVat += bookings[i].calcVat() * -1;
         }
     }
-    
+
     // USt-Vorauszahlungen nur bei der Jahresrechnung
     if ( month != 0 ) {
         preVat = 0;
@@ -206,7 +206,7 @@ Monat:
     vatIn16 = netIn16 * 16 / 100;
     netIn19 = netIn19 - (netIn19 % 100);
     vatIn19 = netIn19 * 19 / 100;
-    
+
     out.println ("<TH COLSPAN=4 ALIGN=CENTER>Bemessungsgrundlage Netto ohne Cents</TH></TR><TR>");
 
     // only 7% or ...
@@ -224,7 +224,7 @@ Monat:
 	out.println ("<TD ALIGN=RIGHT>" + new Money (vatIn16) + "</TD>");
 	out.println ("<TD ALIGN=RIGHT>" + new Money (netIn16) + "</TD></TR><TR>");
     }
-    
+
     // ... or 19%
     if (vatIn19 != 0 || netIn19 != 0) {
 	out.println ("<TD>USt 19%</TD>");
@@ -232,7 +232,7 @@ Monat:
 	out.println ("<TD ALIGN=RIGHT>" + new Money (vatIn19) + "</TD>");
 	out.println ("<TD ALIGN=RIGHT>" + new Money (netIn19) + "</TD></TR><TR>");
     }
-    
+
     // zu verschiedenen USt-Sätzen, daher ist Netto nicht angegeben
     out.println ("<TD>Vorsteuer</TD>");
     out.println ("<TD ALIGN=RIGHT>" + new Money (vatOut) + "</TD>");
@@ -246,7 +246,7 @@ Monat:
         out.println ("<TD>&nbsp;</TD>");
         out.println ("<TD>&nbsp;</TD></TR><TR>");
     }
-    
+
     out.println ("<TD>Ausstehende USt</TD>");
     out.println ("<TD ALIGN=RIGHT>" + new Money (vatIn7 + vatIn16 + vatIn19 - vatOut - preVat) +
                                     "</TD>");

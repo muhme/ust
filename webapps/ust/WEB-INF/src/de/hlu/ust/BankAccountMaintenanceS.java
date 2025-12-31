@@ -19,7 +19,7 @@ import jakarta.servlet.http.HttpSession;
 
 /**
  * This class is a servlet that maintains information about bank accounts.
- * 
+ *
  * @author Heiko Lübbe
  */
 public class BankAccountMaintenanceS extends HttpServlet {
@@ -30,7 +30,7 @@ public class BankAccountMaintenanceS extends HttpServlet {
      * session, updates the data and calls the corresponding bank account
      * maintenance function: insert or update. It then redirects the response to
      * the <tt>ListBankAccounts.jsp</tt> JSP page.
-     * 
+     *
      * @param req
      *            The HTTP Servlet request.
      * @param res
@@ -45,7 +45,7 @@ public class BankAccountMaintenanceS extends HttpServlet {
 
         // Must set the content type first
         res.setContentType("text/html");
-        
+
         // Now we can obtain a PrintWriter
         PrintWriter out = res.getWriter();
 
@@ -54,7 +54,7 @@ public class BankAccountMaintenanceS extends HttpServlet {
         // alle gesetzten Parameter ausgeben
         out.println("parameters:<BR>");
         String param;
-        for (Enumeration e = req.getParameterNames(); e.hasMoreElements();) {
+        for (Enumeration<String> e = req.getParameterNames(); e.hasMoreElements();) {
             param = e.nextElement().toString();
             out.println(param + "=" + req.getParameter(param) + "<BR>");
         }
@@ -84,7 +84,7 @@ public class BankAccountMaintenanceS extends HttpServlet {
                         description, bankCode, iban, user);
                 session.setAttribute("message", "Das Bankkonto \"" + nickname
                         + "\" wurde geändert.");
-                
+
                 // using the configured user name?
                 String configUser = Config.getUserName();
                 if (!user.equalsIgnoreCase(configUser)) {
@@ -145,7 +145,7 @@ public class BankAccountMaintenanceS extends HttpServlet {
             e.printStackTrace(out);
         }
     }
-    
+
     /** To fullfill the {@link Serializable} interface. */
     private static final long serialVersionUID = 1L;
 }

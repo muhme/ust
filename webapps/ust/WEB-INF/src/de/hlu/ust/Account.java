@@ -20,16 +20,16 @@ import java.io.InputStreamReader;
  * account. An <code>Account</code> collects bookings of the same type, e.g.
  * all outgoings for stamps. It differs from the {@link BankAccount}which makes
  * an entry for a bank.
- * 
+ *
  * @author Heiko Lübbe
  */
-public class Account extends Finance implements Comparable {
+public class Account extends Finance implements Comparable<Account> {
 
     /**
      * Getter for the accounts number.
-     * 
+     *
      * @return The accounts number.
-     * 
+     *
      * @see #setNumber(int)
      */
     public int getNumber() {
@@ -38,9 +38,9 @@ public class Account extends Finance implements Comparable {
 
     /**
      * Getter for the accounts name.
-     * 
+     *
      * @return This accounts name.
-     * 
+     *
      * @see #setName(String)
      */
     public String getName() {
@@ -49,9 +49,9 @@ public class Account extends Finance implements Comparable {
 
     /**
      * Getter for the accounts description.
-     * 
+     *
      * @return This accounts description.
-     * 
+     *
      * @see #setDescription(String)
      */
     public String getDescription() {
@@ -81,9 +81,9 @@ public class Account extends Finance implements Comparable {
      * {@link Finance#OUT_CASH_BOX}
      * </ul>
      * </li>
-     * 
+     *
      * @return This accounts type.
-     * 
+     *
      * @see #setKind(int)
      */
     public int getKind() {
@@ -92,10 +92,10 @@ public class Account extends Finance implements Comparable {
 
     /**
      * Getter of the accounts flag about the bank statement.
-     * 
+     *
      * @return <code>true</code> if bookings of this account have usually an
      *         bank statement.
-     * 
+     *
      * @see #setHasBankStatement(boolean)
      */
     public boolean getHasBankStatement() {
@@ -104,10 +104,10 @@ public class Account extends Finance implements Comparable {
 
     /**
      * Setter for the accounts number.
-     * 
+     *
      * @param number
      *            The account number to set.
-     * 
+     *
      * @see #getNumber()
      */
     public void setNumber(int number) {
@@ -116,10 +116,10 @@ public class Account extends Finance implements Comparable {
 
     /**
      * Setter for the accounts name.
-     * 
+     *
      * @param name
      *            The accounts name to set.
-     * 
+     *
      * @see #getName()
      */
     public void setName(String name) {
@@ -128,10 +128,10 @@ public class Account extends Finance implements Comparable {
 
     /**
      * Setter for the accounts description.
-     * 
+     *
      * @param description
      *            The accounts description to set.
-     * 
+     *
      * @see #getDescription()
      */
     public void setDescription(String description) {
@@ -140,11 +140,11 @@ public class Account extends Finance implements Comparable {
 
     /**
      * Setter for the accounts type.
-     * 
+     *
      * @param kind
      *            The accounts type, for meaningful values see
      *            {@link #getKind()}.
-     * 
+     *
      * @see #getKind()
      */
     public void setKind(int kind) {
@@ -153,11 +153,11 @@ public class Account extends Finance implements Comparable {
 
     /**
      * Setter for the "booking of this account have usually an bank entry" flag.
-     * 
+     *
      * @param hasBankStatement
      *            <code>true</code> if bookings of this account have usually
      *            an bank entry.
-     * 
+     *
      * @see #getHasBankStatement()
      */
     public void setHasBankStatement(boolean hasBankStatement) {
@@ -168,7 +168,7 @@ public class Account extends Finance implements Comparable {
      * Add the account to the list of accounts. Make the new account
      * persistence, save the file as .old, set the id, append *this and write
      * all accounts.
-     * 
+     *
      * @throws AppException
      *             If the account number exists already or some read or write
      *             problems.
@@ -204,7 +204,7 @@ public class Account extends Finance implements Comparable {
 
     /**
      * Remove the account entry.
-     * 
+     *
      * @throws AppException
      *             If the accounts internal id isn't found or in case of read
      *             or write problems.
@@ -230,7 +230,7 @@ public class Account extends Finance implements Comparable {
     /**
      * Actualize the given account by the internal id and persist the change.
      * The date field is set to the actual date and time.
-     * 
+     *
      * @param number
      *            accounts new number.
      * @param name
@@ -247,7 +247,7 @@ public class Account extends Finance implements Comparable {
      *            account.
      * @param user
      *            changing users name.
-     * 
+     *
      * @throws AppException
      *             If no account with the given internal id is found or in case
      *             of read or write problems.
@@ -285,7 +285,7 @@ public class Account extends Finance implements Comparable {
 
     /**
      * Print the account with all fields.
-     * 
+     *
      * @return With all fields of this account, separated by '|'.
      */
     public String toString() {
@@ -297,15 +297,15 @@ public class Account extends Finance implements Comparable {
 
     /**
      * Compares an account entry after the account number.
-     * 
+     *
      * @param o
      *            the Account object to compare
      * @return -1, 0 or 1, see {@link Comparable}
      */
-    public int compareTo(Object o) {
+    public int compareTo(Account o) {
 
-        Integer ai = new Integer(((Account) o).getNumber());
-        Integer bi = new Integer(number);
+        Integer ai = Integer.valueOf(o.getNumber());
+        Integer bi = Integer.valueOf(number);
 
         return bi.compareTo(ai);
 
@@ -313,9 +313,9 @@ public class Account extends Finance implements Comparable {
 
     /**
      * Get all existing accounts in an array, sorted by the account number.
-     * 
+     *
      * @return All account entries.
-     * 
+     *
      * @throws AppException
      *             in case of problems with reading the accounts file.
      */
@@ -335,12 +335,12 @@ public class Account extends Finance implements Comparable {
 
     /**
      * Get an <code>Account</code> object for a given account number.
-     * 
+     *
      * @param number
      *            The account number, looking for.
-     * 
+     *
      * @return Reference to the account entry for the given number.
-     * 
+     *
      * @throws AppException
      *             In case of problems reading accounts or if for the given
      *             account number no account exists.
@@ -361,12 +361,12 @@ public class Account extends Finance implements Comparable {
 
     /**
      * Get an <code>Account</code> object for a given internal id.
-     * 
+     *
      * @param id
      *            The internal id, looking for.
-     * 
+     *
      * @return Reference to the account entry for the given internal id.
-     * 
+     *
      * @throws AppException
      *             In case of problems reading accounts or if for the given
      *             internal id no account exists.
@@ -386,12 +386,12 @@ public class Account extends Finance implements Comparable {
 
     /**
      * Read the account from a string.
-     * 
+     *
      * @param from
      *            The line where the account entry is read for.
-     * 
+     *
      * @return The completly filled account entry.
-     * 
+     *
      * @throws AppException
      *             If the format cannot be parsed.
      */
@@ -460,7 +460,7 @@ public class Account extends Finance implements Comparable {
     /**
      * Read in the account list. Not as static initializer to have the
      * posibility to throw exceptions.
-     * 
+     *
      * @throws AppException
      *             In case of read problems.
      */
@@ -470,17 +470,18 @@ public class Account extends Finance implements Comparable {
             return;
         }
 
-        allEntries = new Vector();
+        allEntries = new Vector<>();
         String line;
         int lineNumber = 0;
 
         try {
-            BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(Config
-                    .getFileName(ACCOUNTS)), "UTF-8"));
+            try (BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(Config
+                    .getFileName(ACCOUNTS)), "UTF-8"))) {
 
-            while ((line = in.readLine()) != null) {
-                ++lineNumber;
-                allEntries.add(fromString(line));
+                while ((line = in.readLine()) != null) {
+                    ++lineNumber;
+                    allEntries.add(fromString(line));
+                }
             }
         } catch (Exception e) {
             throw new AppException("Probleme beim Einlesen der Datei \""
@@ -491,10 +492,10 @@ public class Account extends Finance implements Comparable {
 
     /**
      * Getter for all account entries.
-     * 
+     *
      * @see de.hlu.ust.Finance#getAllEntries()
      */
-    protected Vector getAllEntries() {
+    protected Vector<Account> getAllEntries() {
         return allEntries;
     }
 
@@ -525,14 +526,14 @@ public class Account extends Finance implements Comparable {
     private static final String ACCOUNTS = "accounts";
 
     /** All account entries. */
-    private static Vector allEntries;
+    private static Vector<Account> allEntries;
 
     /** To fullfill the {@link Serializable}interface. */
     private static final long serialVersionUID = 1000L;
 
     /**
      * Test case.
-     * 
+     *
      * @param args
      */
     public static void main(String[] args) {
@@ -542,7 +543,7 @@ public class Account extends Finance implements Comparable {
             (new Account()).save();
             /*
              * Account[] accounts = getAllAccounts();
-             * 
+             *
              * for (int i = 0; i < accounts.length; ++i) {
              * System.out.println(accounts[i]);
              * System.out.println(accounts[i].getName()); }

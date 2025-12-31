@@ -36,7 +36,7 @@ die Anwendung ust, in der Version <%= Finance.VERSION %>, vom <%= Finance.DATE %
 try {
 
     // default: selectable
-    int month = 0;   
+    int month = 0;
 
     // 1st try to get it from the request
     String str = request.getParameter ("month");
@@ -59,7 +59,7 @@ try {
         }
     }
 
-    // user name changed? 
+    // user name changed?
     String user = request.getParameter("user");
     if (user != null) {
     	// special handling for GET-request, FORM-data always handled as ISO-8859-1
@@ -69,7 +69,7 @@ try {
         Config.setUserName (user);
     }
     user = Config.getUserName();
-    
+
     // booking year changed?
     String bookingYear = request.getParameter ("year");
     if ((bookingYear != null) && !bookingYear.equals ("" + Config.getBookingYear())) {
@@ -107,15 +107,15 @@ try {
     }
 
     out.println ("<tr><td>user.name</td><td><input name=\"user\" size=20 maxlength=40 value=\"" + user + "\" title=\"Voreinstellung für den Bearbeiter neu angelegter oder geänderter Einträge\"></td></tr>");
-    
+
 %>
-<tr><td>Monat</td><td> 
+<tr><td>Monat</td><td>
 <!-- dynamic include -->
 <% String pageUrl = "MonthChoosen.jsp?selectValue=" + month; %>
 <jsp:include page="<%= pageUrl %>" flush="true"></jsp:include>
 </td></tr>
 <%
-    
+
     out.println ("<tr><td>Jahr</td><td><input name=\"year\" size=4 maxlength=4 value=\"" + bookingYear + "\" title=\"Voreinstellung für die Jahreszahl in den Überschriften\"></td></tr>");
 
     out.println ("</table><br><br>");

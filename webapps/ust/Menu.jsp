@@ -42,7 +42,7 @@ try {
             BankStatement bankStatement = new BankStatement();
             BankAccount bankAccount = new BankAccount();
 
-            // only create the data files if all four data files are missing             
+            // only create the data files if all four data files are missing
             if ( ! account.isReadable() && ! booking.isReadable() &&
                  ! bankStatement.isReadable() && ! bankAccount.isReadable() ) {
                  session.setAttribute("warning", "Dateien " + account.getDataFileName() + ", " +
@@ -55,7 +55,7 @@ try {
                  bankAccount.createDataFile();
                  Config.createVersionFile();
             }
-            
+
             // checking once for data-files version updates
             Config.checkDataFilesVersionUpdates();
         }
@@ -70,7 +70,7 @@ try {
         }
     }
 
-    boolean print = false;    
+    boolean print = false;
     str = request.getParameter ("print");
     if ( (str == null) && (request.getParameter ("print.x") != null)) {
         // ie doesn't support value for input type=image
@@ -82,7 +82,7 @@ try {
     } else {
         print = false;
     }
-    
+
     if (print) {
         out.println ("<TABLE WIDTH=100% class=print><colgroup width=33% span=3></colgroup>");
         out.println ( "<TR>" +

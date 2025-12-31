@@ -19,17 +19,17 @@ import java.io.InputStreamReader;
 /**
  * The BankStatement object stores all information about one line from the bank
  * statement.
- * 
+ *
  * @author Heiko Lübbe
  */
-public class BankStatement extends Finance implements Comparable {
+public class BankStatement extends Finance implements Comparable<BankStatement> {
 
     /**
      * Getter for the bank statment number (usually the counting start with 1 in
      * January).
-     * 
+     *
      * @return The bank statements number.
-     * 
+     *
      * @see #setNumber(int)
      */
     public int getNumber() {
@@ -39,9 +39,9 @@ public class BankStatement extends Finance implements Comparable {
     /**
      * Getter for the bank statements page. Each bank statement number starts
      * with page 1.
-     * 
+     *
      * @return The bank statements page.
-     * 
+     *
      * @see #setPage(int)
      */
     public int getPage() {
@@ -51,9 +51,9 @@ public class BankStatement extends Finance implements Comparable {
     /**
      * Getter for the bank statements position on the page. Each page starts
      * with position 1.
-     * 
+     *
      * @return The bank statements page position.
-     * 
+     *
      * @see #getPosition()
      */
     public int getPosition() {
@@ -63,7 +63,7 @@ public class BankStatement extends Finance implements Comparable {
     /**
      * Getter for the refernce to the bank account. The bank account is
      * referenced by the unique bank account internal identifier.
-     * 
+     *
      * @return The bank accounts unique internal identifier for this bank
      *         statement.
      */
@@ -73,10 +73,10 @@ public class BankStatement extends Finance implements Comparable {
 
     /**
      * Setter for the bank statements number in the year.
-     * 
+     *
      * @param number
      *            The bank statement number in the year to set.
-     * 
+     *
      * @see #getNumber()
      */
     public void setNumber(int number) {
@@ -85,10 +85,10 @@ public class BankStatement extends Finance implements Comparable {
 
     /**
      * Setter for the bank statements page for the given number.
-     * 
+     *
      * @param page
      *            The page for the given number to set.
-     * 
+     *
      * @see #getPage()
      */
     public void setPage(int page) {
@@ -98,10 +98,10 @@ public class BankStatement extends Finance implements Comparable {
     /**
      * Setter for the bank statements position on the page. Each page starts
      * with a position 1 bank statement.
-     * 
+     *
      * @param position
      *            The position for the given page to set.
-     * 
+     *
      * @see #getPosition()
      */
     public void setPosition(int position) {
@@ -110,11 +110,11 @@ public class BankStatement extends Finance implements Comparable {
 
     /**
      * Setter for the bank account unique internal identifier.
-     * 
+     *
      * @param bankAccountId
      *            The bank account unique internal identifier to set for this
      *            bank statement.
-     * 
+     *
      * @see #getBankAccountId()
      */
     public void setBankAccountId(int bankAccountId) {
@@ -125,11 +125,11 @@ public class BankStatement extends Finance implements Comparable {
      * Cerate this bank statement. Making the new BankStatement persistent by
      * saving the actual file as .old, set the id, append *this and write all
      * bank statemnts.
-     * 
+     *
      * @throws AppException
      *             If the bank statement exists already or in case of read or
      *             write errors.
-     * 
+     *
      * @see #create(int, int, int, int)
      */
     public void create() throws AppException {
@@ -169,7 +169,7 @@ public class BankStatement extends Finance implements Comparable {
     /**
      * Wrapper for {@link #create()}with bank account id, number, page and
      * position.
-     * 
+     *
      * @param bankAccountId
      *            The bank statments bank account identifier.
      * @param number
@@ -178,11 +178,11 @@ public class BankStatement extends Finance implements Comparable {
      *            The bank statements page.
      * @param position
      *            The bank statements position on the page.
-     * 
+     *
      * @throws AppException
      *             If the bank statement exists already or in case of read or
      *             write errors.
-     * 
+     *
      * @see #create()
      */
     public void create(int bankAccountId, int number, int page, int position)
@@ -196,7 +196,7 @@ public class BankStatement extends Finance implements Comparable {
 
     /**
      * Remove this bank statement.
-     * 
+     *
      * @throws AppException
      *             If the bank statement isn't found or in case of read or write
      *             errors.
@@ -221,9 +221,9 @@ public class BankStatement extends Finance implements Comparable {
 
     /**
      * Get all bank statements from January until December.
-     * 
+     *
      * @return BankStatement[] All bank statements they are available.
-     * 
+     *
      * @throws AppException
      *             In case of read errors.
      */
@@ -235,14 +235,14 @@ public class BankStatement extends Finance implements Comparable {
      * Get all bank statements from <tt>from</tt> month until <tt>to</tt>
      * month in an array, sorted first by booking date and second by the bank
      * statement.
-     * 
+     *
      * @param from
      *            int beginning month (1...12)
      * @param to
      *            int until this month (1...12)
-     * 
+     *
      * @return BankStatement[] All bank statements found.
-     * 
+     *
      * @throws AppException
      *             Ic case of read errors.
      */
@@ -255,7 +255,7 @@ public class BankStatement extends Finance implements Comparable {
 
         read();
 
-        Vector list = new Vector();
+        Vector<BankStatement> list = new Vector<>();
 
         for (int i = 0; i < allEntries.size(); ++i) {
             booking = Booking
@@ -278,12 +278,12 @@ public class BankStatement extends Finance implements Comparable {
 
     /**
      * Get a <code>BankStatement</code> object by given id.
-     * 
+     *
      * @param id
      *            The bank statement internal identifier looking for.
-     * 
+     *
      * @return The completely filled object.
-     * 
+     *
      * @throws AppException
      *             If no such entry exists or in case of read errors.
      */
@@ -304,7 +304,7 @@ public class BankStatement extends Finance implements Comparable {
 
     /**
      * Get a <code>BankStatement</code> object by all fields.
-     * 
+     *
      * @param bankAccountId
      *            The bank statements bank account identifier.
      * @param number
@@ -313,10 +313,10 @@ public class BankStatement extends Finance implements Comparable {
      *            The bank statements page.
      * @param position
      *            The bank statements position in the page.
-     * 
+     *
      * @return The completely filled object or <code>null</code> if no such
      *         bank statement exists.
-     * 
+     *
      * @throws AppException
      *             In case of read errors.
      */
@@ -334,7 +334,7 @@ public class BankStatement extends Finance implements Comparable {
                 return bs;
             }
         }
-        
+
         // nothing found
         return null;
 
@@ -342,15 +342,15 @@ public class BankStatement extends Finance implements Comparable {
 
     /**
      * Read the bank statement from a {@link String}.
-     * 
+     *
      * @param from
      *            The <code>String</code> with the bank statement to read.
-     * 
+     *
      * @return An complete bank statement object.
-     * 
+     *
      * @throws AppException
      *             If the bank statement cannot be parsed.
-     * 
+     *
      * @see #toString()
      */
     public static BankStatement fromString(String from) throws AppException {
@@ -413,24 +413,24 @@ public class BankStatement extends Finance implements Comparable {
 
     /**
      * Print the bank statement object with all fields to a {@link String}.
-     * 
+     *
      * @return The <code>String</code> which contains all fields.
-     * 
+     *
      * @see #fromString(String)
      */
     public String toString() {
         return (id + "|" + getDateAsString() + "|" + number + "|" + page + "|"
                 + position + "|" + bankAccountId);
     }
-    
+
     /**
      * Getter for all bank statement entries.
      * @see de.hlu.ust.Finance#getAllEntries()
      */
-    protected Vector getAllEntries() {
+    protected Vector<BankStatement> getAllEntries() {
         return allEntries;
     }
-    
+
     /**
      * Getter for the bank statements file name.
      * @return The relative file name.
@@ -438,7 +438,7 @@ public class BankStatement extends Finance implements Comparable {
     public String getDataFileName() {
         return BANKSTATEMENTS;
     }
-    
+
     /** The bank statements number. Starting with 1 each year. */
     private int number;
 
@@ -453,18 +453,18 @@ public class BankStatement extends Finance implements Comparable {
 
     /** The bank statements file name */
     private static final String BANKSTATEMENTS = "bankStatements";
-    
+
     /** To fullfill the {@link Serializable}interface. */
     private static final long serialVersionUID = 1L;
-    
+
     /** All bank statement entries. */
-    private static Vector allEntries;
+    private static Vector<BankStatement> allEntries;
 
     /**
      * Read in all bank statements from the data file.
-     * 
+     *
      * Not as static initializer to have the posibility to throw exceptions.
-     * 
+     *
      * @throws AppException
      *             In case of read errors.
      */
@@ -474,17 +474,18 @@ public class BankStatement extends Finance implements Comparable {
             return;
         }
 
-        allEntries = new Vector();
+        allEntries = new Vector<>();
         String line;
         int lineNumber = 0;
 
         try {
-            BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(Config
-                    .getFileName(BANKSTATEMENTS)), "UTF-8"));
+            try (BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(Config
+                    .getFileName(BANKSTATEMENTS)), "UTF-8"))) {
 
-            while ((line = in.readLine()) != null) {
-                ++lineNumber;
-                allEntries.add(fromString(line));
+                while ((line = in.readLine()) != null) {
+                    ++lineNumber;
+                    allEntries.add(fromString(line));
+                }
             }
         } catch (IOException e) {
             // no exception at initialize
@@ -501,36 +502,36 @@ public class BankStatement extends Finance implements Comparable {
     /**
      * Compare a bank statement first after the bank account identifier, second
      * after the number, third after the page and fourth after the position.
-     * 
+     *
      * @param o
      *            The bank statement object to compare to.
      * @return -1, 0 or 1, see {@link Comparable}
      */
-    public int compareTo(Object o) {
+    public int compareTo(BankStatement o) {
 
-        Integer ai = new Integer(((BankStatement) o).getBankAccountId());
-        Integer bi = new Integer(bankAccountId);
-
-        if (bi.compareTo(ai) != 0) {
-            return bi.compareTo(ai);
-        }
-
-        ai = new Integer(((BankStatement) o).getNumber());
-        bi = new Integer(number);
+        Integer ai = Integer.valueOf(o.getBankAccountId());
+        Integer bi = Integer.valueOf(bankAccountId);
 
         if (bi.compareTo(ai) != 0) {
             return bi.compareTo(ai);
         }
 
-        ai = new Integer(((BankStatement) o).getPage());
-        bi = new Integer(page);
+        ai = Integer.valueOf(o.getNumber());
+        bi = Integer.valueOf(number);
 
         if (bi.compareTo(ai) != 0) {
             return bi.compareTo(ai);
         }
 
-        ai = new Integer(((BankStatement) o).getPosition());
-        bi = new Integer(position);
+        ai = Integer.valueOf(o.getPage());
+        bi = Integer.valueOf(page);
+
+        if (bi.compareTo(ai) != 0) {
+            return bi.compareTo(ai);
+        }
+
+        ai = Integer.valueOf(o.getPosition());
+        bi = Integer.valueOf(position);
 
         return bi.compareTo(ai);
 

@@ -16,7 +16,7 @@ public class TableData {
 
     /**
      * Constructor with table data content as {@link String}.
-     * 
+     *
      * @param content
      *            The table data content.
      */
@@ -26,7 +26,7 @@ public class TableData {
 
     /**
      * Constructor with table data content as <code>int</code>.
-     * 
+     *
      * @param i
      *            The table data content.
      */
@@ -36,7 +36,7 @@ public class TableData {
 
     /**
      * Getter for the table data content.
-     * 
+     *
      * @return This table data content.
      */
     public String getContent() {
@@ -46,7 +46,7 @@ public class TableData {
     /**
      * Setter for the table data content.
      * Changes <code>null</code>, empty strings or one single space to <code>&amp;nbsp;</code>.
-     * 
+     *
      * @param content
      *            The table data content.
      */
@@ -86,7 +86,7 @@ public class TableData {
      * Gives the given integer as an HTML table data element, left aligned.
      * @param i The input int.
      * @return The HTML data element.
-     */    
+     */
     public static String left(int i) {
         return "<td>" + fmt("" + i) + "</td>";
     }
@@ -99,12 +99,12 @@ public class TableData {
     public static String right(String str) {
         return "<td align=right>" + fmt(str) + "</td>";
     }
-    
+
     /**
      * Gives the given integer as an HTML table data element, right aligned.
      * @param i The input int.
      * @return The HTML data element.
-     */ 
+     */
     public static String right(int i) {
         return "<td align=right>" + fmt("" + i) + "</td>";
     }
@@ -113,7 +113,7 @@ public class TableData {
      * Gives the given String as an HTML table data element, centered.
      * @param str The input String.
      * @return The HTML data element.
-     */ 
+     */
     public static String center(String str) {
         return "<td align=center>" + fmt(str) + "</td>";
     }

@@ -129,7 +129,7 @@ try {
        out.print (" selected");
     }
 %>
-            value=false >Nein 
+            value=false >Nein
     </select></TD></TR>
 
     <TR><TD>Ust-Satz in %</TD>
