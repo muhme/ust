@@ -1,8 +1,7 @@
 /*
- * ust - my VAT calculating project
  * BankAccountMaintenanceS.java - servlet to create, update or remove an bank account
- * hlu, 2003 - Mar 20 2021
- * Tomcat 10
+ *
+ * ust web application, Copyright (c) 2003 Heiko Lübbe, MIT License, https://github.com/muhme/ust
  */
 
 package de.hlu.ust;

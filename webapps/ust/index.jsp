@@ -1,7 +1,7 @@
 <!--
-  ust - my VAT calculating project
   index.jsp - the first entry point
-  hlu, May 12 2001 - $Date: 2008-03-09 15:04:49 +0100 (Sun, 09 Mar 2008) $
+
+  ust web application, Copyright (c) 2001 Heiko Lübbe, MIT License, https://github.com/muhme/ust
 -->
 
 <%@ page session="true" %>

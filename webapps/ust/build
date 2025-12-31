@@ -1,5 +1,8 @@
-# ust - my VAT calculating project
-# hlu, 2003 - $Date: 2008-03-09 15:04:49 +0100 (Sun, 09 Mar 2008) $
+# build – legacy build command collection
+# 
+# Please use scripts/build.sh now.
+#
+# ust web application, Copyright (c) 2003 Heiko Lübbe, MIT License, https://github.com/muhme/ust
 
 TOMCAT_HOME=/opt/jakarta/tomcat ; export TOMCAT_HOME
 # adopting for Maverick and MacPorts

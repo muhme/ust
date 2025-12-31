@@ -1,8 +1,7 @@
 /*
- * ust - my VAT calculating project
  * AccountMaintenance.java - servlet to create, update or remove an account entry
- * hlu, Jan 30 2000 - Mar 20 2021
- * Tomcat 10
+ *
+ * ust web application, Copyright (c) 2001 Heiko Lübbe, MIT License, https://github.com/muhme/ust
  */
 
 package de.hlu.ust;

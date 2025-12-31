@@ -1,14 +1,14 @@
 /*
- * ust - my VAT calculating project
  * formate.css - cascading style sheets
- * hlu, Feb 22 2005 - $Date: 2008-03-09 15:04:49 +0100 (Sun, 09 Mar 2008) $
+ *
+ * ust web application, Copyright (c) 2005 Heiko Lübbe, MIT License, https://github.com/muhme/ust
  */
 
 /* page background color ivory, page left margin 10 pixels */
 body { background-color:#FFFFF0;
        margin-left:10px; }
 
-/* all othe table */
+/* all other tables */
 table       { border-collapse:collapse; border-color=gray;  border-width:1px; border-style:solid; }
 table td,th { border-collapse:collapse; border-color:gray; border-width:1px; border-style:solid; padding:3px; }
 

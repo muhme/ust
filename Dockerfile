@@ -1,8 +1,17 @@
+# Dockerfile – ust web application
+#
+# ust web application, Copyright (c) 2023 Heiko Lübbe, MIT License, https://github.com/muhme/ust
+
 # Use the official Tomcat image as a base
 FROM tomcat:10.1.10-jdk21-openjdk-slim
 
 # some comfort
-RUN apt-get update -qq && apt-get upgrade -y && apt-get install -y net-tools vim
+# Install tools and timezone database (noninteractive to avoid tzdata prompt)
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update -qq \
+	&& apt-get upgrade -y \
+	&& apt-get install -y --no-install-recommends net-tools vim tzdata \
+	&& rm -rf /var/lib/apt/lists/*
 
 # Compile Java source files
 ADD webapps /usr/local/tomcat/webapps

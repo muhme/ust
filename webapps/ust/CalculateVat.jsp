@@ -1,7 +1,7 @@
 <!--
-  ust - my VAT calculating project
   CalculateVat.jsp - calculate VAT
-  hlu, Jan 5 2007 - Jul 5 2023
+
+  ust web application, Copyright (c) 2007 Heiko Lübbe, MIT License, https://github.com/muhme/ust
 -->
 
 <%@ page import="de.hlu.ust.*" %>

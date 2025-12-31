@@ -1,7 +1,7 @@
 /*
- * ust - my VAT calculating project
- * Booking,java - implements a booking object
- * hlu, Jan 30 2000 - $Date: 2008-03-09 15:04:49 +0100 (Sun, 09 Mar 2008) $
+ * Booking.java - implements a booking object
+ *
+ * ust web application, Copyright (c) 2000 Heiko Lübbe, MIT License, https://github.com/muhme/ust
  */
 
 package de.hlu.ust;

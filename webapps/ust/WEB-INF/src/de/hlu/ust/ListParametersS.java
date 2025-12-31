@@ -1,7 +1,7 @@
 /*
- * ust - my VAT calculating project
  * ListParametersS.java - servlet to change some configuration values
- * hlu, Jan 30 2000 - Mar 20 2021
+ *
+ * ust web application, Copyright (c) 2000 Heiko Lübbe, MIT License, https://github.com/muhme/ust
  */
 
 package de.hlu.ust;

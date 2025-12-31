@@ -1,7 +1,7 @@
 /*
- * ust - my VAT calculating project
- * AppException - an exception as logical application error representation 
- * hlu, 2000 - $Date: 2008-03-09 15:04:49 +0100 (Sun, 09 Mar 2008) $
+ * AppException.java - an exception as logical application error representation 
+ *
+ * ust web application, Copyright (c) 2008 Heiko Lübbe, MIT License, https://github.com/muhme/ust
  */
 
 package de.hlu.ust;

@@ -1,4 +1,6 @@
-version: '3.7'
+# docker-compose.yml – Docker compose file for ust web application Docker container
+#
+# ust web application, Copyright (c) 2023 Heiko Lübbe, MIT License, https://github.com/muhme/ust
 
 services:
   ust:
@@ -8,6 +10,12 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./data:/usr/local/tomcat/webapps/ust/data/
+      - ./scripts:/usr/local/tomcat/webapps/ust/scripts:ro
+      - ./webapps/ust/WEB-INF/test:/usr/local/tomcat/webapps/ust/WEB-INF/test:ro
+
     ports:
       - "8080:8080"
+    environment:
+      - TZ=${TZ:-Europe/Berlin}
+      - JAVA_OPTS=-Duser.timezone=${TZ:-Europe/Berlin}
     restart: unless-stopped

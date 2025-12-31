@@ -1,7 +1,7 @@
 /*
- * ust - my VAT calculating project
  * Finance.java - an parent object for the Account, Booking and BankAccount objects
- * hlu, Jan 30 2000 - Jul 5 2023
+ *
+ * ust web application, Copyright (c) 2000 Heiko Lübbe, MIT License, https://github.com/muhme/ust
  */
 
 package de.hlu.ust;
@@ -44,10 +44,10 @@ import java.io.OutputStreamWriter;
 public abstract class Finance implements Serializable {
 
     /** Program version. */
-    public static final String VERSION = "0.2.7";
+    public static final String VERSION = "0.2.8";
 
     /** Program date. */
-    public static final String DATE = "5. Juli 2023";
+    public static final String DATE = "30. Dezember 2025";
 
     /** The incomming account type. */
     public static final int IN = 0;
@@ -318,12 +318,12 @@ public abstract class Finance implements Serializable {
      * @see #gregorianDateToString(GregorianCalendar)
      */
     public static String gregorianToString(GregorianCalendar date) {
-
-        return (toTwo(date.get(Calendar.DAY_OF_MONTH)) + "."
-                + toTwo((date.get(Calendar.MONTH) + 1)) + "."
-                + date.get(Calendar.YEAR) + " "
-                + toTwo(date.get(Calendar.HOUR_OF_DAY)) + ":" + toTwo(date
-                .get(Calendar.MINUTE)));
+        GregorianCalendar local = toConfiguredZone(date);
+        return (toTwo(local.get(Calendar.DAY_OF_MONTH)) + "."
+            + toTwo((local.get(Calendar.MONTH) + 1)) + "."
+            + local.get(Calendar.YEAR) + " "
+            + toTwo(local.get(Calendar.HOUR_OF_DAY)) + ":" + toTwo(local
+            .get(Calendar.MINUTE)));
     }
 
     /**
@@ -337,10 +337,10 @@ public abstract class Finance implements Serializable {
      * @see #gregorianToString(GregorianCalendar)
      */
     public String gregorianDateToString(GregorianCalendar date) {
-
-        return (toTwo(date.get(Calendar.DAY_OF_MONTH)) + "."
-                + toTwo((date.get(Calendar.MONTH) + 1)) + "." + date
-                .get(Calendar.YEAR));
+        GregorianCalendar local = toConfiguredZone(date);
+        return (toTwo(local.get(Calendar.DAY_OF_MONTH)) + "."
+            + toTwo((local.get(Calendar.MONTH) + 1)) + "." + local
+            .get(Calendar.YEAR));
     }
 
     /**
@@ -352,6 +352,24 @@ public abstract class Finance implements Serializable {
      */
     public static String toTwo(int i) {
         return (i < 10 ? "0" + i : "" + i);
+    }
+
+    /**
+     * Convert the given calendar to the configured timezone for display.
+     * Priority: system property "UST_TIMEZONE" if present, otherwise JVM default timezone.
+     * The instant (millis) remains the same; only the view (fields) changes.
+     */
+    private static GregorianCalendar toConfiguredZone(GregorianCalendar source) {
+        java.util.TimeZone tz;
+        String override = System.getProperty("UST_TIMEZONE");
+        if (override != null && override.trim().length() > 0) {
+            tz = java.util.TimeZone.getTimeZone(override.trim());
+        } else {
+            tz = java.util.TimeZone.getDefault();
+        }
+        GregorianCalendar local = new GregorianCalendar(tz);
+        local.setTimeInMillis(source.getTimeInMillis());
+        return local;
     }
 
     /** The internal identifier 1, 2, 3 ... */

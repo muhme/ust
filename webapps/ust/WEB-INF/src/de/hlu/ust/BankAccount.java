@@ -1,7 +1,7 @@
 /*
- * ust - my VAT calculating project
- * BankAccount,java - implements the bank account object
- * hlu, Sep 22 2003 - $Date: 2008-03-09 15:04:49 +0100 (Sun, 09 Mar 2008) $
+ * BankAccount.java - implements the bank account object
+ *
+ * ust web application, Copyright (c) 2003 Heiko Lübbe, MIT License, https://github.com/muhme/ust
  */
 
 package de.hlu.ust;

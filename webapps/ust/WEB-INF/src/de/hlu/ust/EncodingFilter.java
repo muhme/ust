@@ -1,8 +1,7 @@
 /*
- * ust - my VAT calculating project
  * EncodingFilter.java - set char set UTF-8
- * hlu, Mar 6 2008 - Mar 20 2021
- * Tomcat 10
+ *
+ * ust web application, Copyright (c) 2008 Heiko Lübbe, MIT License, https://github.com/muhme/ust
  */
 
 package de.hlu.ust;

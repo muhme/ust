@@ -1,7 +1,7 @@
 <!--
-  ust - my VAT calculating project
   BankAccountChoosen.jsp - show all bank accounts nicknames in a select box
-  hlu, Sep 30 2003 - $Date: 2008-03-09 15:04:49 +0100 (Sun, 09 Mar 2008) $
+
+  ust web application, Copyright (c) 2003 Heiko Lübbe, MIT License, https://github.com/muhme/ust
 -->
 
 <%@ page import="de.hlu.ust.*" %>

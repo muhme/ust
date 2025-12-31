@@ -1,7 +1,7 @@
 <!--
-  ust - my VAT calculating project
   MonthChoosen.jsp - show all months and give a selection
-  hlu, May 19 2001 - $Date: 2008-03-09 15:04:49 +0100 (Sun, 09 Mar 2008) $
+
+  ust web application, Copyright (c) 2001 Heiko Lübbe, MIT License, https://github.com/muhme/ust
 -->
 
 <%@ page import="de.hlu.ust.*" %>

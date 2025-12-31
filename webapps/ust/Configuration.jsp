@@ -1,7 +1,7 @@
 <!--
-  ust - my VAT calculating project
   Configuration.jsp - show and set the configuration
-  hlu, Sep 21 2003 - Jul 5 2023
+
+  ust web application, Copyright (c) 2003 Heiko Lübbe, MIT License, https://github.com/muhme/ust
 -->
 
 <%@ page import="de.hlu.ust.*" %>
@@ -75,11 +75,22 @@ try {
     if ((bookingYear != null) && !bookingYear.equals ("" + Config.getBookingYear())) {
         Config.setBookingYear (Integer.parseInt(bookingYear));
     }
-    bookingYear = "" + Config.getBookingYear();    
+    bookingYear = "" + Config.getBookingYear();
 
     out.println ("<tr><td>UST_DATA</td><td>" + Config.getFileName("") + "</td></tr>");
     out.println ("<tr><td>UST_CURRENCY</td><td>" + Config.getCurrency() + "</td></tr>");
     out.println ("<tr><td>UST_TAX_NUMBER</td><td>" + Config.getTaxNumber() + "</td></tr>");
+
+    // Show timezone configuration
+    String ustTimezone = System.getProperty("UST_TIMEZONE");
+    String jvmTimezone = java.util.TimeZone.getDefault().getID();
+    if (ustTimezone != null && ustTimezone.trim().length() > 0) {
+        out.println ("<tr><td>UST_TIMEZONE</td><td>" + ustTimezone + "</td></tr>");
+        out.println ("<tr><td>user.timezone (default)</td><td>" + jvmTimezone + "</td></tr>");
+    } else {
+        out.println ("<tr><td>Timezone</td><td>" + jvmTimezone + "</td></tr>");
+    }
+
     out.println ("<tr><td>user.name</td><td><input name=\"user\" size=20 maxlength=40 value=\"" + user + "\" title=\"Voreinstellung für den Bearbeiter neu angelegter oder geänderter Einträge\"></td></tr>");
     
 %>

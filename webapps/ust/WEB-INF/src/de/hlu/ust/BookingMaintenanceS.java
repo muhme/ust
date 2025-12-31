@@ -1,7 +1,7 @@
 /*
- * ust - my VAT calculating project
  * BookingMaintenanceS.java - servlet to create, update or remove a booking
- * hlu, May 15 2001 - Mar 20 2021
+ *
+ * ust web application, Copyright (c) 2001 Heiko Lübbe, MIT License, https://github.com/muhme/ust
  */
 
 package de.hlu.ust;

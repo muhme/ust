@@ -1,7 +1,7 @@
 <!--
-  ust - my VAT calculating project
   ListBankStatements.jsp - show all bank statements
-  hlu, May 12 2001 - Jul 5 2023
+
+  ust web application, Copyright (c) 2001 Heiko Lübbe, MIT License, https://github.com/muhme/ust
 -->
 
 <%@ page import="de.hlu.ust.*" %>
